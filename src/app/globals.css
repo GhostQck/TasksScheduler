@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --cl-bg: #273338;
+  --cl-fg: #2B5748;
+  --cl-hl: #618764;
+  --cl-txt: #9CB080;
+  --gr-red: linear-gradient(90deg, #DA4453 0%, #89216B 100%);
+  --gr-green: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+  --gr-yellow: linear-gradient(90deg, #CAC531 0%, #F3F9A7 100%);
+  --gr-yellow: linear-gradient(90deg, #004680 0%, #4484BA 100%);
+}
