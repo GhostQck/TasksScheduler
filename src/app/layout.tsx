@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${montserrat.className} text-[var(--cl-txt)] h-full antialiased`}
+      className={`${montserrat.className} text-txt h-full antialiased`}
     >
-      <body className='min-h-full flex flex-col bg-[var(--cl-bg)]'>
+      <body className='min-h-full flex flex-col bg-bg'>
         {children}
       </body>
     </html>
