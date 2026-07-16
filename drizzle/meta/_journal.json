@@ -22,6 +22,13 @@
       "when": 1783950359943,
       "tag": "0002_harsh_sunfire",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1784236119272,
+      "tag": "0003_friendly_quasimodo",
+      "breakpoints": true
     }
   ]
 }
