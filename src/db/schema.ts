@@ -1,4 +1,3 @@
-import { timeStamp } from 'console';
 import { pgTable, integer, boolean, serial, uuid, varchar, text, timestamp, json } from "drizzle-orm/pg-core";
 
 const USER_ROLES = [
