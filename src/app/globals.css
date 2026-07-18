@@ -2,8 +2,14 @@
 
 @theme {
   --color-bg: #273338;
+
   --color-fg: #2B5748;
+  --color-fg-dark: #2f4a41;
+
+  --color-hl-light: #85ab88;
   --color-hl: #618764;
+  --color-hl-dark: #4c6e4e;
+
   --color-txt: #9CB080;
 
   --background-image-gr-red: linear-gradient(90deg, #89216B 0%, #DA4453 100%);
