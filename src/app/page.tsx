@@ -49,7 +49,7 @@ export default function Root() {
                 type='text'
                 placeholder='CX ID'
                 className='
-                  bg-fg-dark rounded-lg p-2 shadow-lg
+                  bg-fg-dark rounded-full py-2 px-4 shadow-lg text-sm
                   duration-200 transition-all ease-in-out
                   hover:brightness-[1.1] hover:shadow-xl
                   focus:outline-none focus:ring-2 focus:ring-txt/30
@@ -60,7 +60,7 @@ export default function Root() {
                 type='text'
                 placeholder='CHAT ID'
                 className='
-                  no-spinner bg-fg-dark rounded-lg p-2 shadow-lg
+                  bg-fg-dark rounded-full py-3 px-4 shadow-lg text-sm
                   duration-200 transition-all ease-in-out
                   hover:brightness-[1.1] hover:shadow-xl
                   focus:outline-none focus:ring-2 focus:ring-txt/30
