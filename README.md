@@ -30,6 +30,6 @@ $\color{#9CB080}\textsf{TEXT}$
 
 ## Implemented Features:
 
-None
+- Adaptive Layout
 
 ---
