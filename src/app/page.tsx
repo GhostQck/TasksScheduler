@@ -103,6 +103,7 @@ export default function Root() {
                 name='task_src_cx'
                 type='text'
                 placeholder='CX ID'
+                maxLength={30}
                 className='
                   bg-fg-dark rounded-full py-2 px-4 shadow-lg text-sm
 
@@ -117,6 +118,7 @@ export default function Root() {
                 name='task_src_chat'
                 type='text'
                 placeholder='CHAT ID'
+                maxLength={30}
                 className='
                   bg-fg-dark rounded-full py-3 px-4 shadow-lg text-sm
 
