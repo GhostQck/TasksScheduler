@@ -4,7 +4,7 @@ export default function Root() {
       <header className='w-full'>
         <nav
           className='
-            hidden md:flex flex-row gap-2 py-2 px-4 w-full items-center justify-center bg-txt text-bg text-lg select-none font-bold uppercase
+            hidden md:flex sticky top-0 flex-row gap-2 py-2 px-4 w-full items-center justify-center bg-txt text-bg text-lg select-none font-bold uppercase
 
             *:py-1 *:px-4 *:bg-txt *:cursor-pointer *:rounded-md
 
@@ -27,11 +27,11 @@ export default function Root() {
 
             md:text-2xl lg:text-4xl text-center
           '
-        >213 tasks in total</h1>
+        >213 pending tasks</h1>
       </header>
       <div
         className='
-          grid gap-4 lg:grid-cols-2 items-start
+          grid gap-4 lg:grid-cols-2
 
           *:w-md *:rounded-xl *:border-2 *:border-txt *:bg-fg *:p-2 *:shadow-xl
 
@@ -40,6 +40,32 @@ export default function Root() {
       >
         <section>
           <h2>in progress</h2>
+          <div className='w-full mt-2 text-center'>
+            <label
+              htmlFor='expert_select'
+              className='mr-2 select-none'
+            >Assign to:</label>
+            <div className='inline'>
+              <select
+                id='expert_select'
+                className='
+                  w-40 p-2 bg-fg-dark rounded-lg cursor-pointer font-inherit
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:brightness-[1.1]
+                  
+                  focus:brightness-[1.1] focus:ring-2 focus:ring-txt/30
+
+                  *:font-sans
+                '
+              >
+                <option value='uuid-1'>Expert-1</option>
+                <option value='uuid-2'>Expert-2</option>
+                <option value='uuid-3'>Expert-3</option>
+              </select>
+            </div>
+          </div>
         </section>
         <section>
           <h2>pending</h2>
@@ -52,14 +78,14 @@ export default function Root() {
           >
             <button
               className='
-                rounded-lg border-2 border-txt bg-hl opacity-[.5] uppercase cursor-pointer
+                hidden md:block rounded-lg border-2 border-txt bg-hl opacity-[.5] uppercase cursor-pointer
 
                 duration-300 transition-all ease-in-out
 
                 hover:p-6 hover:opacity-[.75]
               '
             >create new</button>
-            <hr />
+            <hr className='hidden md:block' />
             <div className='w-full'>
               <h3 className='inline mr-2 capitalize select-none'>task search</h3>
               <button
