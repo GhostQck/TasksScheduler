@@ -12,6 +12,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'Tasks Scheduler',
   description: 'Tasks Scheduler App',
+  alternates: {
+    canonical: 'http://localhost:3000/',
+  }
 };
 
 export default function RootLayout({
