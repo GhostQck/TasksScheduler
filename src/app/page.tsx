@@ -10,7 +10,7 @@ export default function Root() {
 
             *:duration-200 *:transition-all *:ease-in-out
 
-            *:hover:brightness-[1.1] *:hover:shadow-md
+            *:hover:brightness-110 *:hover:shadow-md
           '
         >
           <a>Main</a>
@@ -53,9 +53,9 @@ export default function Root() {
 
                   duration-200 transition-all ease-in-out
 
-                  hover:brightness-[1.1]
+                  hover:brightness-110
                   
-                  focus:brightness-[1.1] focus:ring-2 focus:ring-txt/30
+                  focus:brightness-110 focus:ring-2 focus:ring-txt/30
 
                   *:font-sans
                 '
@@ -78,11 +78,11 @@ export default function Root() {
           >
             <button
               className='
-                hidden md:block rounded-lg border-2 border-txt bg-hl opacity-[.5] uppercase cursor-pointer
+                hidden md:block rounded-lg border-2 border-txt bg-hl opacity-50 uppercase cursor-pointer
 
                 duration-300 transition-all ease-in-out
 
-                hover:p-6 hover:opacity-[.75]
+                hover:p-6 hover:opacity-75
               '
             >create new</button>
             <hr className='hidden md:block' />
@@ -94,41 +94,75 @@ export default function Root() {
 
                   duration-300 transition-all ease-in-out
 
-                  hover:brightness-[1.1]
+                  hover:brightness-110
                 '
               >hide ▲</button>
             </div>
             <div className='grid grid-cols-2 gap-2 !p-0 !bg-transparent'>
-              <input
-                name='task_src_cx'
-                type='text'
-                placeholder='CX ID'
-                maxLength={30}
-                className='
-                  bg-fg-dark rounded-full py-2 px-4 shadow-lg text-sm
+              <div className='relative'>
+                <input
+                  id='task_src_cx'
+                  name='task_src_cx'
+                  type='text'
+                  placeholder=' '
+                  maxLength={30}
+                  className='
+                    peer block bg-fg-dark rounded-full py-3 px-4 w-full shadow-lg text-sm
 
-                  duration-200 transition-all ease-in-out
+                    duration-200 transition-all ease-in-out
 
-                  hover:brightness-[1.1] hover:shadow-xl
+                    hover:brightness-110 hover:shadow-xl
 
-                  focus:outline-none focus:ring-2 focus:ring-txt/30
-                '
-              />
-              <input
-                name='task_src_chat'
-                type='text'
-                placeholder='CHAT ID'
-                maxLength={30}
-                className='
-                  bg-fg-dark rounded-full py-3 px-4 shadow-lg text-sm
+                    focus:outline-none focus:ring-2 focus:ring-txt/30
+                  '
+                />
+                <label
+                  htmlFor='task_src_cx'
+                  className='
+                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50
 
-                  duration-200 transition-all ease-in-out
+                    duration-200 transition-all
 
-                  hover:brightness-[1.1] hover:shadow-xl
+                    peer-hover:brightness-110
 
-                  focus:outline-none focus:ring-2 focus:ring-txt/30
-                '
-              />
+                    peer-focus:top-0 peer-focus:text-xs peer-focus:bg-fg-dark peer-focus:opacity-100
+
+                    peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-fg-dark peer-[:not(:placeholder-shown)]:opacity-100
+                  '
+                >CX ID</label>
+              </div>
+              <div className='relative'>
+                <input
+                  id='task_src_chat'
+                  name='task_src_chat'
+                  type='text'
+                  placeholder=' '
+                  maxLength={30}
+                  className='
+                    peer block bg-fg-dark rounded-full py-3 px-4 w-full shadow-lg text-sm
+
+                    duration-200 transition-all ease-in-out
+
+                    hover:brightness-110 hover:shadow-xl
+
+                    focus:outline-none focus:ring-2 focus:ring-txt/30
+                  '
+                />
+                <label
+                  htmlFor='task_src_chat'
+                  className='
+                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50
+
+                    duration-200 transition-all
+
+                    peer-hover:brightness-110
+
+                    peer-focus:top-0 peer-focus:text-xs peer-focus:bg-fg-dark peer-focus:opacity-100
+
+                    peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-fg-dark peer-[:not(:placeholder-shown)]:opacity-100
+                  '
+                >CHAT ID</label>
+              </div>
             </div>
             <hr />
             <h2>Queue:</h2>
@@ -139,55 +173,35 @@ export default function Root() {
                 <span className='uppercase text-red-300'> 0 hrs left</span>
               </strong>
               <time className='text-sm lowercase'>17 hrs ago</time>
-              <div className='w-full bg-hl my-1 px-2 py-1 brightness-[.9] rounded-md'>
-                <ul className='[&>li>strong]:leading-loose [&>li>strong]:select-none'>
+              <div className='w-full bg-hl my-1 px-2 py-1 brightness-90 rounded-md'>
+                <ul className='
+                  [&>li>strong]:leading-loose [&>li>strong]:select-none
+
+                  [&>li>button]:px-1 [&>li>button]:rounded-sm [&>li>button]:shadow-sm [&>li>button]:bg-hl-dark [&>li>button]:cursor-pointer
+
+                  [&>li>button]:duration-200 [&>li>button]:transition-all [&>li>button]:ease-in-out
+
+                  [&>li>button]:hover:brightness-110
+                '>
                   <li>
                     <strong>CX ID: </strong>
                     <button
-                      className='
-                        px-1 rounded-sm shadow-sm bg-hl-dark cursor-pointer
-
-                        duration-200 transition-all ease-in-out
-
-                        hover:brightness-[1.1]
-                      '
                     >000000</button>
                   </li>
                   <li>
                     <strong>CHAT ID: </strong>
                     <button
-                      className='
-                        px-1 rounded-sm shadow-sm bg-hl-dark cursor-pointer
-
-                        duration-200 transition-all ease-in-out
-
-                        hover:brightness-[1.1]
-                      '
                     >123450000099999</button>
                   </li>
                   <li>
                     <strong>SUBMITTED: </strong>
                     <button
-                      className='
-                        px-1 rounded-sm shadow-sm bg-hl-dark cursor-pointer
-
-                        duration-200 transition-all ease-in-out
-
-                        hover:brightness-[1.1]
-                      '
                     >23.07.2026 - 6 PM</button>
                     &nbsp;by Nick
                   </li>
                   <li>
                     <strong>DEADLINE: </strong>
                     <button
-                      className='
-                        px-1 rounded-sm shadow-sm bg-hl-dark cursor-pointer
-
-                        duration-200 transition-all ease-in-out
-
-                        hover:brightness-[1.1]
-                      '
                     >24.07.2026 - 11 PM</button>
                   </li>
                 </ul>

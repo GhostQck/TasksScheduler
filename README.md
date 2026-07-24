@@ -31,5 +31,6 @@ $\color{#9CB080}\textsf{TEXT}$
 ## Implemented Features:
 
 - Adaptive Layout
+- Dynamic `input` placeholders
 
 ---
