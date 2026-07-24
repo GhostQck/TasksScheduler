@@ -1,10 +1,129 @@
 export default function Root() {
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
+      <dialog className='flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
+        <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
+          <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
+          <form
+            className='grid gap-4 w-full'
+          >
+            <div className='relative'>
+              <input
+                id='n_task_cx'
+                name='n_task_cx'
+                type="text"
+                placeholder=' '
+                maxLength={30}
+                className='
+                  peer block bg-bg rounded-full py-3 px-4 w-full text-sm ring-2 ring-txt/30
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:ring-txt
+
+                  focus:outline-none focus:ring-txt
+                '
+              />
+              <label
+                htmlFor='n_task_cx'
+                className='
+                  pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-full opacity-50 uppercase
+
+                  duration-200 transition-all
+
+                  peer-focus:top-0 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
+
+                  peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
+                '
+              >CX ID</label>
+            </div>
+            <div className='relative'>
+              <input
+                id='n_task_chat'
+                name='n_task_chat'
+                type="text"
+                placeholder=' '
+                maxLength={30}
+                className='
+                  peer block bg-bg rounded-full py-3 px-4 w-full text-sm ring-2 ring-txt/30
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:ring-txt
+
+                  focus:outline-none focus:ring-txt
+                '
+              />
+              <label
+                htmlFor='n_task_chat'
+                className='
+                  pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-full opacity-50 uppercase
+
+                  duration-200 transition-all
+
+                  peer-focus:top-0 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
+
+                  peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
+                '
+              >CHAT ID</label>
+            </div>
+            <div className='relative'>
+              <input
+                id='n_task_ddl'
+                name='n_task_ddl'
+                type="text"
+                placeholder=' '
+                maxLength={3}
+                className='
+                  peer block bg-bg rounded-full py-3 px-4 w-full text-sm ring-2 ring-txt/30
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:ring-txt
+
+                  focus:outline-none focus:ring-txt
+                '
+              />
+              <label
+                htmlFor='n_task_ddl'
+                className='
+                  pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-full opacity-50 uppercase
+
+                  duration-200 transition-all
+
+                  peer-focus:top-0 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
+
+                  peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
+                '
+              >DEADLINE</label>
+            </div>
+            <div>
+              <select
+                id='expert_select'
+                name='expert_select'
+                className='
+                  w-25 py-3 px-4 bg-txt/30 ring-2 ring-txt/30 rounded-full cursor-pointer text-center font-inherit
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:brightness-110
+                  
+                  focus:brightness-110 focus:ring-2 focus:ring-txt
+
+                  *:font-sans
+                '
+              >
+                <option value='hours'>hours</option>
+                <option value='days'>days</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </dialog>
       <header className='w-full'>
         <nav
           className='
-            hidden md:flex sticky top-0 flex-row gap-2 py-2 px-4 w-full items-center justify-center bg-txt text-bg text-lg select-none font-bold uppercase
+            hidden md:flex sticky top-0 flex-row gap-2 py-2 px-4 w-full items-center justify-center bg-txt text-bg text-lg shadow-xl select-none font-bold uppercase
 
             *:py-1 *:px-4 *:bg-txt *:cursor-pointer *:rounded-md
 
@@ -31,9 +150,9 @@ export default function Root() {
       </header>
       <div
         className='
-          grid gap-4 lg:grid-cols-2
+          grid gap-4 lg:grid-cols-2 items-start
 
-          *:w-md *:rounded-xl *:border-2 *:border-txt *:bg-fg *:p-2 *:shadow-xl
+          *:w-md *:rounded-xl *:border-2 *:border-txt *:bg-fg *:p-4 *:shadow-xl
 
           [&>section>h2]:w-full [&>section>h2]:text-center [&>section>h2]:text-xl [&>section>h2]:font-bold [&>section>h2]:uppercase [&>section>h2]:select-none
         '
@@ -41,13 +160,14 @@ export default function Root() {
         <section>
           <h2>in progress</h2>
           <div className='w-full mt-2 text-center'>
-            <label
-              htmlFor='expert_select'
-              className='mr-2 select-none'
-            >Assign to:</label>
-            <div className='inline'>
+            <div className='w-full pb-4'>
+              <label
+                htmlFor='expert_select'
+                className='mr-2 select-none'
+              >Assign to:</label>
               <select
                 id='expert_select'
+                name='expert_select'
                 className='
                   w-40 p-2 bg-fg-dark rounded-lg cursor-pointer font-inherit
 
@@ -65,13 +185,45 @@ export default function Root() {
                 <option value='uuid-3'>Expert-3</option>
               </select>
             </div>
+            <hr />
+            <div className='text-left py-4'>
+              <span className='block opacity-75'>
+                from
+                <time className='font-semibold'> 24.07 at 3 PM </time>
+                to
+                <time className='font-semibold'> 25.07 at 2 AM</time>
+              </span>
+              <div className='flex flex-row gap-2 justify-start items-center'>
+                <h3 className='font-bold text-lg'>Expert-1</h3>
+                <button
+                  className='
+                    !p-0 w-[2rem] aspect-square bg-fg-dark rounded-md shadow-md cursor-pointer
+
+                    duration-200 transition-all ease-in-out
+
+                    hover:brightness-110 hover:shadow-lg
+                  '
+                >E</button>
+                <button
+                  className='
+                    !p-0 w-[2rem] aspect-square bg-fg-dark rounded-md shadow-md cursor-pointer
+
+                    duration-200 transition-all ease-in-out
+
+                    hover:brightness-110 hover:shadow-lg
+                  '
+                >C</button>
+              </div>
+            </div>
+            <hr />
+            <h3 className='mt-4 uppercase'>1 task in progress</h3>
           </div>
         </section>
         <section>
           <h2>pending</h2>
           <div
             className='
-              flex flex-col gap-4 w-full p-2
+              flex flex-col gap-4 w-full
 
               *:w-full
             '
@@ -119,7 +271,7 @@ export default function Root() {
                 <label
                   htmlFor='task_src_cx'
                   className='
-                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50
+                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50 uppercase
 
                     duration-200 transition-all
 
@@ -151,7 +303,7 @@ export default function Root() {
                 <label
                   htmlFor='task_src_chat'
                   className='
-                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50
+                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50 uppercase
 
                     duration-200 transition-all
 
@@ -214,11 +366,11 @@ export default function Root() {
 
                   [&>button]:duration-200 [&>button]:transition-all [&>button]:ease-in-out
 
-                  [&>button]:hover:brightness-[1.1] [&>button]:hover:shadow-lg
+                  [&>button]:hover:brightness-110 [&>button]:hover:shadow-lg
                 '
               >
-                <button>U</button>
-                <button>T</button>
+                <button className='!p-0 w-[2rem] aspect-square'>U</button>
+                <button className='!p-0 w-[2rem] aspect-square'>T</button>
                 <button>more details ▼</button>
                 <button
                   className='absolute right-[.75]'
