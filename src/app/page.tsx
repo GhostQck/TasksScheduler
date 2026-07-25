@@ -4,6 +4,7 @@ export default function Root() {
       <dialog className='flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
         <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
           <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
+
           <form
             className='
               grid grid-cols-4 gap-4 w-full
@@ -28,6 +29,7 @@ export default function Root() {
                   focus:outline-none focus:ring-txt
                 '
               />
+
               <label
                 htmlFor='n_task_cx'
                 className='
@@ -41,6 +43,7 @@ export default function Root() {
                 '
               >CX ID</label>
             </div>
+
             <div className='[grid-area:b] relative'>
               <input
                 id='n_task_chat'
@@ -58,6 +61,7 @@ export default function Root() {
                   focus:outline-none focus:ring-txt
                 '
               />
+
               <label
                 htmlFor='n_task_chat'
                 className='
@@ -71,6 +75,7 @@ export default function Root() {
                 '
               >CHAT ID</label>
             </div>
+
             <div className='[grid-area:c] relative'>
               <input
                 id='n_task_ddl'
@@ -88,6 +93,7 @@ export default function Root() {
                   focus:outline-none focus:ring-txt
                 '
               />
+
               <label
                 htmlFor='n_task_ddl'
                 className='
@@ -100,7 +106,32 @@ export default function Root() {
                   peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
                 '
               >DEADLINE</label>
+
+              <div className='absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 z-3'>
+                <button
+                  type='button'
+                  className='
+                    w-[2rem] aspect-square bg-txt/30 rounded-full shadow-md cursor-pointer
+
+                    duration-200 transition-all ease-in-out
+
+                    hover:brightness-110
+                  '
+                >-</button>
+
+                <button
+                  type='button'
+                  className='
+                    w-[2rem] aspect-square bg-txt/30 rounded-full shadow-md cursor-pointer
+
+                    duration-200 transition-all ease-in-out
+
+                    hover:brightness-110
+                  '
+                >+</button>
+              </div>
             </div>
+
             <div className='[grid-area:d]'>
               <select
                 id='expert_select'
@@ -121,6 +152,7 @@ export default function Root() {
                 <option value='days'>days</option>
               </select>
             </div>
+
             <div className='[grid-area:e] relative'>
               <textarea
                 id='n_task_desc'
@@ -138,6 +170,7 @@ export default function Root() {
                   focus:outline-none focus:ring-txt
                 '
               />
+
               <label
                 htmlFor='n_task_desc'
                 className='
@@ -151,7 +184,9 @@ export default function Root() {
                 '
               >{`DESCRIPTION (256 char)`}</label>
             </div>
-            <hr className='[grid-area:f] opacity-50 my-4' />
+
+            <hr className='[grid-area:f] my-4' />
+
             <div className='[grid-area:g] flex justify-start'>
               <button
                 type='submit'
@@ -165,6 +200,7 @@ export default function Root() {
                 '
               >Discard</button>
             </div>
+
             <div className='[grid-area:h] flex justify-end'>
               <button
                 type='submit'
@@ -200,6 +236,7 @@ export default function Root() {
             className='ml-auto !rounded-full !bg-bg h-full aspect-square'
           ></button>
         </nav>
+
         <h1
           className='
             w-full p-4 text-xl font-extrabold uppercase
@@ -219,12 +256,14 @@ export default function Root() {
       >
         <section>
           <h2>in progress</h2>
+
           <div className='w-full mt-2 text-center'>
             <div className='w-full pb-4'>
               <label
                 htmlFor='expert_select'
                 className='mr-2 select-none'
               >Assign to:</label>
+
               <select
                 id='expert_select'
                 name='expert_select'
@@ -245,7 +284,9 @@ export default function Root() {
                 <option value='uuid-3'>Expert-3</option>
               </select>
             </div>
+
             <hr />
+
             <div className='text-left py-4'>
               <span className='block opacity-75'>
                 from
@@ -253,8 +294,10 @@ export default function Root() {
                 to
                 <time className='font-semibold'> 25.07 at 2 AM</time>
               </span>
+
               <div className='flex flex-row gap-2 justify-start items-center'>
                 <h3 className='font-bold text-lg'>Expert-1</h3>
+
                 <button
                   className='
                     !p-0 w-[2rem] aspect-square bg-fg-dark rounded-md shadow-md cursor-pointer
@@ -264,6 +307,7 @@ export default function Root() {
                     hover:brightness-110 hover:shadow-lg
                   '
                 >E</button>
+
                 <button
                   className='
                     !p-0 w-[2rem] aspect-square bg-fg-dark rounded-md shadow-md cursor-pointer
@@ -275,12 +319,16 @@ export default function Root() {
                 >C</button>
               </div>
             </div>
+
             <hr />
+
             <h3 className='mt-4 uppercase'>1 task in progress</h3>
           </div>
         </section>
+
         <section>
           <h2>pending</h2>
+
           <div
             className='
               flex flex-col gap-4 w-full
@@ -297,9 +345,12 @@ export default function Root() {
                 hover:p-6 hover:opacity-75
               '
             >create new</button>
+
             <hr className='hidden md:block' />
+
             <div className='w-full'>
               <h3 className='inline mr-2 capitalize select-none'>task search</h3>
+
               <button
                 className='
                   inline bg-fg rounded-md px-1 ring-1 ring-txt cursor-pointer uppercase
@@ -310,6 +361,7 @@ export default function Root() {
                 '
               >hide ▲</button>
             </div>
+
             <div className='grid grid-cols-2 gap-2 !p-0 !bg-transparent'>
               <div className='relative'>
                 <input
@@ -328,6 +380,7 @@ export default function Root() {
                     focus:outline-none focus:ring-2 focus:ring-txt/30
                   '
                 />
+
                 <label
                   htmlFor='task_src_cx'
                   className='
@@ -343,6 +396,7 @@ export default function Root() {
                   '
                 >CX ID</label>
               </div>
+
               <div className='relative'>
                 <input
                   id='task_src_chat'
@@ -360,6 +414,7 @@ export default function Root() {
                     focus:outline-none focus:ring-2 focus:ring-txt/30
                   '
                 />
+
                 <label
                   htmlFor='task_src_chat'
                   className='
@@ -376,15 +431,21 @@ export default function Root() {
                 >CHAT ID</label>
               </div>
             </div>
+
             <hr />
+
             <h2>Queue:</h2>
+
             <div className='relative bg-hl p-2 rounded-lg shadow-xl'>
               <span className='absolute top-2 right-2 py-1 px-3 bg-gr-blue rounded-xl text-[.625rem] shadow-xs/30 text-slate-200 font-bold uppercase select-none'>new</span>
+              
               <strong className='block w-full lowercase'>
                 3000 words -
                 <span className='uppercase text-red-300'> 0 hrs left</span>
               </strong>
+
               <time className='text-sm lowercase'>17 hrs ago</time>
+              
               <div className='w-full bg-hl my-1 px-2 py-1 brightness-90 rounded-md'>
                 <ul className='
                   [&>li>strong]:leading-loose [&>li>strong]:select-none
@@ -418,6 +479,7 @@ export default function Root() {
                   </li>
                 </ul>
               </div>
+
               <div
                 className='
                   relative flex flex-row gap-2 pt-1 w-full
@@ -430,8 +492,11 @@ export default function Root() {
                 '
               >
                 <button className='!p-0 w-[2rem] aspect-square'>U</button>
+
                 <button className='!p-0 w-[2rem] aspect-square'>T</button>
+
                 <button>more details ▼</button>
+                
                 <button
                   className='absolute right-[.75]'
                 >cancel</button>
