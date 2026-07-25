@@ -5,9 +5,13 @@ export default function Root() {
         <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
           <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
           <form
-            className='grid gap-4 w-full'
+            className='
+              grid grid-cols-4 gap-4 w-full
+
+              [grid-template-areas:"a_a_b_b"_"c_c_c_d"_"e_e_e_e"_"f_f_f_f"_"g_g_h_h"]
+            '
           >
-            <div className='relative'>
+            <div className='[grid-area:a] relative'>
               <input
                 id='n_task_cx'
                 name='n_task_cx'
@@ -37,7 +41,7 @@ export default function Root() {
                 '
               >CX ID</label>
             </div>
-            <div className='relative'>
+            <div className='[grid-area:b] relative'>
               <input
                 id='n_task_chat'
                 name='n_task_chat'
@@ -67,7 +71,7 @@ export default function Root() {
                 '
               >CHAT ID</label>
             </div>
-            <div className='relative'>
+            <div className='[grid-area:c] relative'>
               <input
                 id='n_task_ddl'
                 name='n_task_ddl'
@@ -97,12 +101,12 @@ export default function Root() {
                 '
               >DEADLINE</label>
             </div>
-            <div>
+            <div className='[grid-area:d]'>
               <select
                 id='expert_select'
                 name='expert_select'
                 className='
-                  w-25 py-3 px-4 bg-txt/30 ring-2 ring-txt/30 rounded-full cursor-pointer text-center font-inherit
+                  w-full py-3 px-4 bg-txt/30 ring-2 ring-txt/30 rounded-full cursor-pointer text-center font-inherit
 
                   duration-200 transition-all ease-in-out
 
@@ -116,6 +120,62 @@ export default function Root() {
                 <option value='hours'>hours</option>
                 <option value='days'>days</option>
               </select>
+            </div>
+            <div className='[grid-area:e] relative'>
+              <textarea
+                id='n_task_desc'
+                name='n_task_desc'
+                rows={4}
+                maxLength={256}
+                placeholder=' '
+                className='
+                  peer block w-full bg-bg rounded-lg p-4 text-sm ring-2 ring-txt/30 resize-none
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:ring-txt
+
+                  focus:outline-none focus:ring-txt
+                '
+              />
+              <label
+                htmlFor='n_task_desc'
+                className='
+                  pointer-events-none absolute text-sm text-slate-200 left-4 top-4 p-1 rounded-full opacity-50 uppercase
+
+                  duration-200 transition-all
+
+                  peer-focus:-top-2.5 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
+
+                  peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
+                '
+              >{`DESCRIPTION (256 char)`}</label>
+            </div>
+            <hr className='[grid-area:f] opacity-50 my-4' />
+            <div className='[grid-area:g] flex justify-start'>
+              <button
+                type='submit'
+                formMethod='dialog'
+                className='
+                  w-40 py-3 px-4 rounded-lg font-bold text-sm text-neg ring-inset ring-2 ring-neg cursor-pointer uppercase
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:bg-neg hover:text-bg
+                '
+              >Discard</button>
+            </div>
+            <div className='[grid-area:h] flex justify-end'>
+              <button
+                type='submit'
+                className='
+                  w-40 py-3 px-4 rounded-lg font-bold text-sm text-pos ring-inset ring-2 ring-pos cursor-pointer uppercase
+
+                  duration-200 transition-all ease-in-out
+
+                  hover:bg-pos hover:text-bg
+                '
+              >Create</button>
             </div>
           </form>
         </div>
