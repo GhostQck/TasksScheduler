@@ -478,6 +478,10 @@ export default function Root() {
                     <button
                     >24.07.2026 - 11 PM</button>
                   </li>
+                  <li>
+                    <strong className='block'>DESCRIPTION: </strong>
+                    Some description etc etc
+                  </li>
                 </ul>
               </div>
 
