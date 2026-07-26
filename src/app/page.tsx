@@ -80,8 +80,8 @@ export default function Root() {
               <input
                 id='n_task_ddl'
                 name='n_task_ddl'
-                type="text"
-                value={'24'}
+                type="number"
+                defaultValue={24}
                 placeholder=' '
                 maxLength={3}
                 className='
@@ -92,6 +92,8 @@ export default function Root() {
                   hover:ring-txt
 
                   focus:outline-none focus:ring-txt
+
+                  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
                 '
               />
 
