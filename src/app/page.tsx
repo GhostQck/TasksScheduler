@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+
 export default function Root() {
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
@@ -137,8 +139,8 @@ export default function Root() {
 
             <div className='[grid-area:d]'>
               <select
-                id='expert_select'
-                name='expert_select'
+                id='n_task_time'
+                name='n_task_time'
                 className='
                   w-full py-3 px-4 bg-txt/30 ring-2 ring-txt/30 rounded-full cursor-pointer text-center font-inherit
 
@@ -191,30 +193,18 @@ export default function Root() {
             <hr className='[grid-area:f] my-4' />
 
             <div className='[grid-area:g] flex justify-start'>
-              <button
+              <Button
                 type='submit'
                 formMethod='dialog'
-                className='
-                  w-40 py-3 px-4 rounded-lg font-bold text-sm text-neg ring-inset ring-2 ring-neg cursor-pointer uppercase
-
-                  duration-200 transition-all ease-in-out
-
-                  hover:bg-neg hover:text-bg
-                '
-              >Discard</button>
+                intent='cancel'
+              >Discard</Button>
             </div>
 
             <div className='[grid-area:h] flex justify-end'>
-              <button
+              <Button
                 type='submit'
-                className='
-                  w-40 py-3 px-4 rounded-lg font-bold text-sm text-pos ring-inset ring-2 ring-pos cursor-pointer uppercase
-
-                  duration-200 transition-all ease-in-out
-
-                  hover:bg-pos hover:text-bg
-                '
-              >Create</button>
+                intent='submit'
+              >Create</Button>
             </div>
           </form>
         </div>
@@ -271,13 +261,13 @@ export default function Root() {
                 id='expert_select'
                 name='expert_select'
                 className='
-                  w-40 p-2 bg-fg-dark rounded-lg cursor-pointer font-inherit
+                  w-40 p-2 bg-fg-800 rounded-lg cursor-pointer font-inherit
 
                   duration-200 transition-all ease-in-out
 
-                  hover:brightness-110
+                  hover:bg-fg-600
                   
-                  focus:brightness-110 focus:ring-2 focus:ring-txt/30
+                  focus:bg-fg-600 focus:ring-2 focus:ring-txt/30
 
                   *:font-sans
                 '
@@ -286,6 +276,13 @@ export default function Root() {
                 <option value='uuid-2'>Expert-2</option>
                 <option value='uuid-3'>Expert-3</option>
               </select>
+
+              <label
+                htmlFor='expert_select'
+                className='mr-2 select-none'
+              >
+                <div className='inline-block ml-2 w-[.75rem] h-[.75rem] rounded-full aspect-square bg-pos'></div>
+              </label>
             </div>
 
             <hr />
@@ -301,25 +298,9 @@ export default function Root() {
               <div className='flex flex-row gap-2 justify-start items-center'>
                 <h3 className='font-bold text-lg'>Expert-1</h3>
 
-                <button
-                  className='
-                    !p-0 w-[2rem] aspect-square bg-fg-dark rounded-md shadow-md cursor-pointer
+                <Button intent='square'>E</Button>
 
-                    duration-200 transition-all ease-in-out
-
-                    hover:brightness-110 hover:shadow-lg
-                  '
-                >E</button>
-
-                <button
-                  className='
-                    !p-0 w-[2rem] aspect-square bg-fg-dark rounded-md shadow-md cursor-pointer
-
-                    duration-200 transition-all ease-in-out
-
-                    hover:brightness-110 hover:shadow-lg
-                  '
-                >C</button>
+                <Button intent='square'>C</Button>
               </div>
             </div>
 
@@ -330,7 +311,7 @@ export default function Root() {
         </section>
 
         <section>
-          <h2>pending</h2>
+          <h2 className='mb-4'>pending</h2>
 
           <div
             className='
@@ -351,19 +332,7 @@ export default function Root() {
 
             <hr className='hidden md:block' />
 
-            <div className='w-full'>
-              <h3 className='inline mr-2 capitalize select-none'>task search</h3>
-
-              <button
-                className='
-                  inline bg-fg rounded-md px-1 ring-1 ring-txt cursor-pointer uppercase
-
-                  duration-300 transition-all ease-in-out
-
-                  hover:brightness-110
-                '
-              >hide ▲</button>
-            </div>
+            <h3 className='inline mr-2 capitalize select-none'>task search</h3>
 
             <div className='grid grid-cols-2 gap-2 !p-0 !bg-transparent'>
               <div className='relative'>
@@ -374,28 +343,26 @@ export default function Root() {
                   placeholder=' '
                   maxLength={30}
                   className='
-                    peer block bg-fg-dark rounded-full py-3 px-4 w-full shadow-lg text-sm
+                    peer block bg-fg-800 rounded-full py-3 px-4 w-full shadow-lg text-sm
 
                     duration-200 transition-all ease-in-out
 
-                    hover:brightness-110 hover:shadow-xl
+                    hover:bg-fg-600 hover:shadow-xl
 
-                    focus:outline-none focus:ring-2 focus:ring-txt/30
+                    focus:bg-fg-600 focus:outline-none focus:ring-2 focus:ring-txt/30
                   '
                 />
 
                 <label
                   htmlFor='task_src_cx'
                   className='
-                    pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50 uppercase
+                    pointer-events-none absolute text-sm text-txt-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-sm opacity-50 uppercase
 
                     duration-200 transition-all
 
-                    peer-hover:brightness-110
+                    peer-focus:top-0 peer-focus:text-xs peer-focus:bg-fg-600 peer-focus:opacity-100
 
-                    peer-focus:top-0 peer-focus:text-xs peer-focus:bg-fg-dark peer-focus:opacity-100
-
-                    peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-fg-dark peer-[:not(:placeholder-shown)]:opacity-100
+                    peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-fg-800 peer-[:not(:placeholder-shown)]:opacity-100
                   '
                 >CX ID</label>
               </div>
@@ -408,13 +375,13 @@ export default function Root() {
                   placeholder=' '
                   maxLength={30}
                   className='
-                    peer block bg-fg-dark rounded-full py-3 px-4 w-full shadow-lg text-sm
+                    peer block bg-fg-800 rounded-full py-3 px-4 w-full shadow-lg text-sm
 
                     duration-200 transition-all ease-in-out
 
-                    hover:brightness-110 hover:shadow-xl
+                    hover:bg-fg-600 hover:shadow-xl
 
-                    focus:outline-none focus:ring-2 focus:ring-txt/30
+                    focus:bg-fg-600 focus:outline-none focus:ring-2 focus:ring-txt/30
                   '
                 />
 
@@ -425,11 +392,10 @@ export default function Root() {
 
                     duration-200 transition-all
 
-                    peer-hover:brightness-110
 
-                    peer-focus:top-0 peer-focus:text-xs peer-focus:bg-fg-dark peer-focus:opacity-100
+                    peer-focus:top-0 peer-focus:text-xs peer-focus:bg-fg-600 peer-focus:opacity-100
 
-                    peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-fg-dark peer-[:not(:placeholder-shown)]:opacity-100
+                    peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-fg-800 peer-[:not(:placeholder-shown)]:opacity-100
                   '
                 >CHAT ID</label>
               </div>
@@ -437,48 +403,35 @@ export default function Root() {
 
             <hr />
 
-            <h2>Queue:</h2>
+            <h2>Queue</h2>
 
             <div className='relative bg-hl p-2 rounded-lg shadow-xl'>
               <span className='absolute top-2 right-2 py-1 px-3 bg-gr-blue rounded-xl text-[.625rem] shadow-xs/30 text-slate-200 font-bold uppercase select-none'>new</span>
               
               <strong className='block w-full lowercase'>
                 3000 words -
-                <span className='uppercase text-red-300'> 0 hrs left</span>
+                <span className='uppercase text-neg'> 0 hrs left</span>
               </strong>
 
               <time className='text-sm lowercase'>17 hrs ago</time>
               
-              <div className='w-full bg-hl my-1 px-2 py-1 brightness-90 rounded-md'>
-                <ul className='
-                  [&>li>strong]:leading-loose [&>li>strong]:select-none
-
-                  [&>li>button]:px-1 [&>li>button]:rounded-sm [&>li>button]:shadow-sm [&>li>button]:bg-hl-dark [&>li>button]:cursor-pointer
-
-                  [&>li>button]:duration-200 [&>li>button]:transition-all [&>li>button]:ease-in-out
-
-                  [&>li>button]:hover:brightness-110
-                '>
+              <div className='w-full bg-hl-800 my-1 px-2 py-1 rounded-md'>
+                <ul className='[&>li>strong]:leading-loose [&>li>strong]:select-none'>
                   <li>
                     <strong>CX ID: </strong>
-                    <button
-                    >000000</button>
+                    <Button intent='tight'>000000</Button>
                   </li>
                   <li>
                     <strong>CHAT ID: </strong>
-                    <button
-                    >123450000099999</button>
+                    <Button intent='tight'>123450000099999</Button>
                   </li>
                   <li>
                     <strong>SUBMITTED: </strong>
-                    <button
-                    >23.07.2026 - 6 PM</button>
-                    &nbsp;by Nick
+                    <Button intent='tight'>23.07.2026 - 6 PM</Button>&nbsp;by Nick
                   </li>
                   <li>
                     <strong>DEADLINE: </strong>
-                    <button
-                    >24.07.2026 - 11 PM</button>
+                    <Button intent='tight'>24.07.2026 - 11 PM</Button>
                   </li>
                   <li>
                     <strong className='block'>DESCRIPTION: </strong>
@@ -487,26 +440,16 @@ export default function Root() {
                 </ul>
               </div>
 
-              <div
-                className='
-                  relative flex flex-row gap-2 pt-1 w-full
+              <div className='relative flex flex-row gap-2 pt-1 w-full'>
+                <Button intent='square'>U</Button>
 
-                  [&>button]:py-1 [&>button]:px-3 [&>button]:bg-hl-dark [&>button]:rounded-md [&>button]:shadow-md [&>button]:capitalize [&>button]:cursor-pointer
+                <Button intent='square'>T</Button>
 
-                  [&>button]:duration-200 [&>button]:transition-all [&>button]:ease-in-out
-
-                  [&>button]:hover:brightness-110 [&>button]:hover:shadow-lg
-                '
-              >
-                <button className='!p-0 w-[2rem] aspect-square'>U</button>
-
-                <button className='!p-0 w-[2rem] aspect-square'>T</button>
-
-                <button>more details ▼</button>
+                <Button>more details ▼</Button>
                 
-                <button
+                <Button
                   className='absolute right-[.75]'
-                >cancel</button>
+                >cancel</Button>
               </div>
             </div>
           </div>

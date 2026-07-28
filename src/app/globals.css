@@ -2,21 +2,40 @@
 
 @theme {
   --color-bg: #273338;
+  --color-bg-200: color-mix(in srgb, var(--color-bg) 80%, white);
+  --color-bg-400: color-mix(in srgb, var(--color-bg) 90%, white);
+  --color-bg-600: color-mix(in srgb, var(--color-bg) 90%, black);
+  --color-bg-800: color-mix(in srgb, var(--color-bg) 80%, black);
 
   --color-fg: #2B5748;
-  --color-fg-dark: #2f4a41;
+  --color-fg-200: color-mix(in srgb, var(--color-fg) 80%, white);
+  --color-fg-400: color-mix(in srgb, var(--color-fg) 90%, white);
+  --color-fg-600: color-mix(in srgb, var(--color-fg) 90%, black);
+  --color-fg-800: color-mix(in srgb, var(--color-fg) 80%, black);
 
-  --color-hl-light: #85ab88;
   --color-hl: #618764;
-  --color-hl-dark: #4c6e4e;
+  --color-hl-200: color-mix(in srgb, var(--color-hl) 80%, white);
+  --color-hl-400: color-mix(in srgb, var(--color-hl) 90%, white);
+  --color-hl-600: color-mix(in srgb, var(--color-hl) 90%, black);
+  --color-hl-800: color-mix(in srgb, var(--color-hl) 80%, black);
 
   --color-txt: #9CB080;
+  --color-txt-200: color-mix(in srgb, var(--color-txt) 80%, white);
+  --color-txt-400: color-mix(in srgb, var(--color-txt) 90%, white);
+  --color-txt-600: color-mix(in srgb, var(--color-txt) 90%, black);
+  --color-txt-800: color-mix(in srgb, var(--color-txt) 80%, black);
 
   --color-pos: #7EC151;
-  --color-pos-pale: #B2D959;
+  --color-pos-200: color-mix(in srgb, var(--color-pos) 80%, white);
+  --color-pos-400: color-mix(in srgb, var(--color-pos) 90%, white);
+  --color-pos-600: color-mix(in srgb, var(--color-pos) 90%, black);
+  --color-pos-800: color-mix(in srgb, var(--color-pos) 80%, black);
   
   --color-neg: #E36A6A;
-  --color-neg-pale: #FFB2B2;
+  --color-neg-200: color-mix(in srgb, var(--color-neg) 80%, white);
+  --color-neg-400: color-mix(in srgb, var(--color-neg) 90%, white);
+  --color-neg-600: color-mix(in srgb, var(--color-neg) 90%, black);
+  --color-neg-800: color-mix(in srgb, var(--color-neg) 80%, black);
 
   --background-image-gr-red: linear-gradient(90deg, #89216B 0%, #DA4453 100%);
   --background-image-gr-green: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
