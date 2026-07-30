@@ -83,6 +83,7 @@ export const InputLabel = React.forwardRef<HTMLInputElement, InputLabelProps>(({
     </div>
   );
 });
+InputLabel.displayName = 'InputLabel';
 
 interface InputCounterProps extends Omit<InputLabelProps, 'defaultValue' | 'type'> {
   startValue?: number;
@@ -141,3 +142,4 @@ export const InputCounter = React.forwardRef<HTMLInputElement, InputCounterProps
     </div>
   );
 });
+InputCounter.displayName = 'InputCounter';
