@@ -11,7 +11,8 @@ The workflow implies having a backend database both for the users who assign the
 Frontend Development\
 **CORE LIBRARY:** `React`\
 **SCRIPTS:** `TypeScript`\
-**STYLE:** `CSS3 + TailwindCSS`
+**STYLE:** `CSS3 + TailwindCSS`\
+**ICONS:** `Lucide`
 
 Backend Development\
 **CORE FRAMEWORK:** `Next.js`\
