@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { InputField } from '@/components/form/input';
+import { InputLabel } from '@/components/form/input';
 
 export default function Root() {
   return (
@@ -15,7 +15,7 @@ export default function Root() {
               [grid-template-areas:"a_a_b_b"_"c_c_c_d"_"e_e_e_e"_"f_f_f_f"_"g_g_h_h"]
             '
           >
-            <InputField
+            <InputLabel
               id='n_task_cx'
               name='n_task_cx'
               type='text'
@@ -26,7 +26,7 @@ export default function Root() {
               labelCN='text-slate-200'
             />
 
-            <InputField
+            <InputLabel
               id='n_task_chat'
               name='n_task_chat'
               type='text'
@@ -294,7 +294,7 @@ export default function Root() {
             <h3 className='inline mr-2 capitalize select-none'>task search</h3>
 
             <div className='grid grid-cols-2 gap-2 !p-0 !bg-transparent'>
-              <InputField
+              <InputLabel
                 id='task_src_cx'
                 name='task_src_cx'
                 type='text'
@@ -304,7 +304,7 @@ export default function Root() {
                 labelCN='text-slate-200'
               />
 
-              <InputField
+              <InputLabel
                 id='task_src_chat'
                 name='task_src_chat'
                 type='text'

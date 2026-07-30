@@ -73,13 +73,13 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(({
 });
 Label.displayName = 'Label';
 
-interface InputFieldProps extends Omit<InputProps, 'placeholder'> {
+interface InputLabelProps extends Omit<InputProps, 'placeholder'> {
   wrapperCN?: string;
   labelCN?: string;
   labelText: string;
 }
 
-export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(({
+export const InputLabel = React.forwardRef<HTMLInputElement, InputLabelProps>(({
   id,
   className,
   wrapperCN,
