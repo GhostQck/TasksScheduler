@@ -4,7 +4,6 @@ import { CircleX } from 'lucide-react';
 
 import { InputLabel } from '@/components/form/input';
 import { Button } from '@/components/ui/button';
-import { HTMLAttributes } from 'react';
 
 export default function Login() {
   return (
