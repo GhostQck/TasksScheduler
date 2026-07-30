@@ -1,5 +1,13 @@
 import { cva } from 'class-variance-authority';
 
+const ALL_VARIANTS = [
+  'solid',
+  'transparent_bg',
+] as const;
+
+type InputIntent = (typeof ALL_VARIANTS)[number];
+type IntentVariants = Record<InputIntent, string>;
+
 export const inputVars = cva(
   'peer block rounded-full py-3 px-4 w-full text-sm text-txt duration-200 transition-all ease-in-out focus:outline-none',
   {
@@ -8,7 +16,7 @@ export const inputVars = cva(
         solid: 'bg-fg-800 shadow-lg hover:bg-fg-600 hover:shadow-xl focus:bg-fg-600 focus:ring-2 focus:ring-txt/30',
 
         transparent_bg: 'bg-bg ring-2 ring-txt/30 hover:ring-txt focus:ring-txt',
-      },
+      } satisfies IntentVariants,
     },
     defaultVariants: {
       intent: 'solid',
@@ -24,7 +32,7 @@ export const labelVars = cva(
         solid: 'peer-focus:bg-fg-600 peer-[:not(:placeholder-shown)]:bg-fg-600',
 
         transparent_bg: 'peer-focus:bg-bg peer-[:not(:placeholder-shown)]:bg-bg',
-      },
+      } satisfies IntentVariants,
     },
     defaultVariants: {
       intent: 'solid',
