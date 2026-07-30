@@ -3,6 +3,7 @@ import { cva } from 'class-variance-authority';
 const ALL_VARIANTS = [
   'solid',
   'transparent_bg',
+  'transparent_fg',
 ] as const;
 
 export type InputIntent = (typeof ALL_VARIANTS)[number];
@@ -17,6 +18,8 @@ export const inputVars = cva(
         solid: 'bg-fg-800 shadow-lg hover:bg-fg-600 hover:shadow-xl focus:bg-fg-600 focus:ring-2 focus:ring-txt/30',
 
         transparent_bg: 'bg-bg ring-2 ring-txt/30 hover:ring-txt focus:ring-txt',
+
+        transparent_fg: 'bg-fg ring-2 ring-txt/30 hover:ring-txt focus:ring-txt',
       } satisfies IntentVariants,
     },
     defaultVariants: {
@@ -33,6 +36,8 @@ export const labelVars = cva(
         solid: 'peer-focus:bg-fg-600 peer-[:not(:placeholder-shown)]:bg-fg-600',
 
         transparent_bg: 'peer-focus:bg-bg peer-[:not(:placeholder-shown)]:bg-bg',
+
+        transparent_fg: 'peer-focus:bg-fg peer-[:not(:placeholder-shown)]:bg-fg',
       } satisfies IntentVariants,
     },
     defaultVariants: {

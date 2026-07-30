@@ -13,7 +13,7 @@ export type TastStatus = (typeof TASK_STATUS)[number];
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   uuid: uuid('uuid').defaultRandom().notNull().unique(),
-  login: varchar('login', { length: 16 }).notNull().unique(),
+  login: varchar('login', { length: 320 }).notNull().unique(),
   password: varchar('password', { length: 30 }).notNull(),
   status: boolean('status').default(true).notNull(),
   role: text('role', { enum: USER_ROLES })

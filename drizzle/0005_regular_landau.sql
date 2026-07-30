@@ -1,0 +1,1 @@
+ALTER TABLE "users" ALTER COLUMN "login" SET DATA TYPE varchar(320);

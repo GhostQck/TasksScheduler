@@ -4,7 +4,7 @@ import { InputCounter, InputLabel } from '@/components/form/input';
 export default function Root() {
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
-      <dialog className='flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
+      <dialog className='hidden flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
         <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
           <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
 
