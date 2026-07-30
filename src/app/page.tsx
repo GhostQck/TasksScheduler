@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button';
+import { InputField } from '@/components/form/input';
 
 export default function Root() {
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
-      <dialog className='hidden flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
+      <dialog className='flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
         <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
           <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
 
@@ -14,69 +15,27 @@ export default function Root() {
               [grid-template-areas:"a_a_b_b"_"c_c_c_d"_"e_e_e_e"_"f_f_f_f"_"g_g_h_h"]
             '
           >
-            <div className='[grid-area:a] relative'>
-              <input
-                id='n_task_cx'
-                name='n_task_cx'
-                type="text"
-                placeholder=' '
-                maxLength={30}
-                className='
-                  peer block bg-bg rounded-full py-3 px-4 w-full text-sm ring-2 ring-txt/30
+            <InputField
+              id='n_task_cx'
+              name='n_task_cx'
+              type='text'
+              maxLength={30}
+              labelText='CX ID'
+              intent='transparent_bg'
+              wrapperCN='[grid-area:a]'
+              labelCN='text-slate-200'
+            />
 
-                  duration-200 transition-all ease-in-out
-
-                  hover:ring-txt
-
-                  focus:outline-none focus:ring-txt
-                '
-              />
-
-              <label
-                htmlFor='n_task_cx'
-                className='
-                  pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-full opacity-50 uppercase
-
-                  duration-200 transition-all
-
-                  peer-focus:top-0 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
-
-                  peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
-                '
-              >CX ID</label>
-            </div>
-
-            <div className='[grid-area:b] relative'>
-              <input
-                id='n_task_chat'
-                name='n_task_chat'
-                type="text"
-                placeholder=' '
-                maxLength={30}
-                className='
-                  peer block bg-bg rounded-full py-3 px-4 w-full text-sm ring-2 ring-txt/30
-
-                  duration-200 transition-all ease-in-out
-
-                  hover:ring-txt
-
-                  focus:outline-none focus:ring-txt
-                '
-              />
-
-              <label
-                htmlFor='n_task_chat'
-                className='
-                  pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-full opacity-50 uppercase
-
-                  duration-200 transition-all
-
-                  peer-focus:top-0 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
-
-                  peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
-                '
-              >CHAT ID</label>
-            </div>
+            <InputField
+              id='n_task_chat'
+              name='n_task_chat'
+              type='text'
+              maxLength={30}
+              labelText='CHAT ID'
+              intent='transparent_bg'
+              wrapperCN='[grid-area:b]'
+              labelCN='text-slate-200'
+            />
 
             <div className='[grid-area:c] relative'>
               <input

@@ -25,13 +25,18 @@ const buttonVars = cva(
 );
 
 interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVars> {}
+extends ButtonHTMLAttributes<HTMLButtonElement>,
+VariantProps<typeof buttonVars> {}
 
-export const Button = ({ className, intent, children, ...props }: ButtonProps) => {
+export const Button = ({
+  className,
+  intent,
+  children,
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      className={cn(buttonVars({ intent, className }))}
+      className={cn(buttonVars({ intent }), className)}
       {...props}
     >{children}</button>
   );
