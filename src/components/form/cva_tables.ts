@@ -5,7 +5,8 @@ const ALL_VARIANTS = [
   'transparent_bg',
 ] as const;
 
-type InputIntent = (typeof ALL_VARIANTS)[number];
+export type InputIntent = (typeof ALL_VARIANTS)[number];
+
 type IntentVariants = Record<InputIntent, string>;
 
 export const inputVars = cva(
