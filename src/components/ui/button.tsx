@@ -16,6 +16,8 @@ const buttonVars = cva(
         submit: 'py-3 px-4 w-40 bg-bg rounded-lg font-bold text-sm text-pos ring-inset ring-2 ring-pos hover:bg-pos hover:text-bg',
         
         cancel: 'py-3 px-4 w-40 bg-bg rounded-lg font-bold text-sm text-neg ring-inset ring-2 ring-neg hover:bg-neg hover:text-bg',
+
+        circle: 'p-0 w-[2rem] rounded-full aspect-square shadow-md bg-txt-low hover:bg-txt-sub',
       },
     },
     defaultVariants: {

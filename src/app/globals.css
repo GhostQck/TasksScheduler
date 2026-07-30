@@ -24,6 +24,8 @@
   --color-txt-400: color-mix(in srgb, var(--color-txt) 90%, white);
   --color-txt-600: color-mix(in srgb, var(--color-txt) 90%, black);
   --color-txt-800: color-mix(in srgb, var(--color-txt) 80%, black);
+  --color-txt-low: color-mix(in srgb, var(--color-txt) 20%, var(--color-bg));
+  --color-txt-sub: color-mix(in srgb, var(--color-txt) 40%, var(--color-bg));
 
   --color-pos: #7EC151;
   --color-pos-200: color-mix(in srgb, var(--color-pos) 80%, white);

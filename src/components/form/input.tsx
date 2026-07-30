@@ -3,6 +3,10 @@ import { type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { inputVars, labelVars } from './cva_tables';
 
+import { Plus, Minus } from 'lucide-react';
+
+import { Button } from '../ui/button';
+
 interface InputProps
 extends InputHTMLAttributes<HTMLInputElement>,
 VariantProps<typeof inputVars> {}
@@ -78,4 +82,62 @@ export const InputLabel = React.forwardRef<HTMLInputElement, InputLabelProps>(({
       >{labelText}</Label>
     </div>
   );
-}); 
+});
+
+interface InputCounterProps extends Omit<InputLabelProps, 'defaultValue' | 'type'> {
+  startValue?: number;
+  buttonCN?: string;
+}
+
+export const InputCounter = React.forwardRef<HTMLInputElement, InputCounterProps>(({
+  id,
+  className,
+  buttonCN,
+  wrapperCN,
+  labelCN,
+  labelText,
+  startValue = 0,
+  intent,
+  ...props
+}, ref) => {
+  const autoId = useId();
+  const inputId = id || autoId;
+
+  return (
+    <div className={cn('relative', wrapperCN)}>
+      <Input
+        ref={ref}
+        id={inputId}
+        intent={intent}
+        type='number'
+        className={cn(
+          '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
+          className
+        )}
+        placeholder=' '
+        defaultValue={startValue}
+        {...props}
+      />
+
+      <Label
+        htmlFor={inputId}
+        intent={intent}
+        className={labelCN}
+      >{labelText}</Label>
+
+      <div className='absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 z-3'>
+        <Button
+          type='button'
+          intent='circle'
+          className={buttonCN}
+        ><Plus /></Button>
+
+        <Button
+          type='button'
+          intent='circle'
+          className={buttonCN}
+        ><Minus /></Button>
+      </div>
+    </div>
+  );
+});

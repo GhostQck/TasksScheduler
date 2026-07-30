@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
-import { InputLabel } from '@/components/form/input';
+import { InputCounter, InputLabel } from '@/components/form/input';
 
 export default function Root() {
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
-      <dialog className='hidden flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
+      <dialog className='flex justify-center items-center absolute z-2 h-screen w-screen text-txt bg-black/60 backdrop-blur-md'>
         <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
           <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
 
@@ -37,64 +37,16 @@ export default function Root() {
               labelCN='text-slate-200'
             />
 
-            <div className='[grid-area:c] relative'>
-              <input
-                id='n_task_ddl'
-                name='n_task_ddl'
-                type="number"
-                defaultValue={24}
-                placeholder=' '
-                maxLength={3}
-                className='
-                  peer block bg-bg rounded-full py-3 px-4 w-full text-sm ring-2 ring-txt/30
-
-                  duration-200 transition-all ease-in-out
-
-                  hover:ring-txt
-
-                  focus:outline-none focus:ring-txt
-
-                  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
-                '
-              />
-
-              <label
-                htmlFor='n_task_ddl'
-                className='
-                  pointer-events-none absolute text-sm text-slate-200 left-4 top-1/2 -translate-y-1/2 p-1 rounded-full opacity-50 uppercase
-
-                  duration-200 transition-all
-
-                  peer-focus:top-0 peer-focus:text-xs peer-focus:bg-bg peer-focus:opacity-100
-
-                  peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-bg peer-[:not(:placeholder-shown)]:opacity-100
-                '
-              >DEADLINE</label>
-
-              <div className='absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 z-3'>
-                <button
-                  type='button'
-                  className='
-                    w-[2rem] aspect-square bg-txt/30 rounded-full shadow-md cursor-pointer
-
-                    duration-200 transition-all ease-in-out
-
-                    hover:brightness-110
-                  '
-                >-</button>
-
-                <button
-                  type='button'
-                  className='
-                    w-[2rem] aspect-square bg-txt/30 rounded-full shadow-md cursor-pointer
-
-                    duration-200 transition-all ease-in-out
-
-                    hover:brightness-110
-                  '
-                >+</button>
-              </div>
-            </div>
+            <InputCounter
+              id='n_task_ddl'
+              name='n_task_ddl'
+              maxLength={3}
+              startValue={24}
+              labelText='DEADLINE'
+              intent='transparent_bg'
+              wrapperCN='[grid-area:c]'
+              labelCN='text-slate-200'
+            />
 
             <div className='[grid-area:d]'>
               <select
