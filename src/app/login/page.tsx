@@ -51,7 +51,7 @@ export default function Login() {
 
 function ErrorBlock({ children }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className='w-100 mt-4 p-4 bg-neg-200/40 shadow-lg rounded-xl ring-2 ring-inset ring-neg/70 text-center text-sm text-neg/70 font-semibold uppercase select-none'>
+    <div className='w-100 mt-4 p-4 bg-neg-200/40 shadow-lg rounded-xl ring-2 ring-inset ring-neg/70 text-center text-sm text-neg/70 font-semibold uppercase select-none pointer-events-none'>
       <CircleX strokeWidth={2} className='inline-block mr-2 size-[1.1rem] -translate-y-[0.1rem]'/>
       {children}
     </div>

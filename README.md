@@ -18,7 +18,9 @@ Backend Development\
 **CORE FRAMEWORK:** `Next.js`\
 **SCRIPTS:** `TypeScript`\
 **DATABASE:** `PostgreSQL`\
-**ORM:** `Drizzle`
+**ORM:** `Drizzle`\
+**PASSWORD ENCRYPTION:** `bcryptjs`\
+**JWT SESSIONS:** `jose`
 
 ## Chosen Color Scheme:
 
