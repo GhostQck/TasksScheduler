@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { InputCounter, InputLabel } from '@/components/form/input';
+import Logout from '@/components/auth/logout';
 
 export default function Root() {
   return (
@@ -125,20 +126,26 @@ export default function Root() {
           className='
             hidden md:flex sticky top-0 flex-row gap-2 py-2 px-4 w-full items-center justify-center bg-txt text-bg text-lg shadow-xl select-none font-bold uppercase
 
-            *:py-1 *:px-4 *:bg-txt *:cursor-pointer *:rounded-md
+            [&>a]:py-1 [&>a]:px-4 [&>a]:bg-txt [&>a]:cursor-pointer [&>a]:rounded-md
 
-            *:duration-200 *:transition-all *:ease-in-out
+            [&>a]:duration-200 [&>a]:transition-all [&>a]:ease-in-out
 
-            *:hover:brightness-110 *:hover:shadow-md
+            [&>a]:hover:brightness-110 [&>a]:hover:shadow-md
           '
         >
           <a>Main</a>
           <a>All Tasks</a>
           <a>Experts</a>
           <a>Agents</a>
-          <button
-            className='ml-auto !rounded-full !bg-bg h-full aspect-square'
-          ></button>
+
+          <div className='flex items-center gap-4 ml-auto h-full max-h-full shrink-0'>
+            <Logout />
+
+            <img
+              src='images/profile-pic.jpg'
+              className='h-10 w-auto object-contain rounded-full'
+            />
+          </div>
         </nav>
 
         <h1

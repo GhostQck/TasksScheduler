@@ -6,7 +6,7 @@ import { eq } from 'drizzle-orm';
 
 import bcrypt from 'bcryptjs';
 
-import { createSession } from '@/lib/session';
+import { createSession, destroySession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 
 export type AuthFormState = {
@@ -55,4 +55,9 @@ export const authUser = async (
   }
 
   redirect('/');
+};
+
+export const logoutUser = async () => {
+  await destroySession();
+  redirect('/login');
 };
