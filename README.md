@@ -11,6 +11,7 @@ The workflow implies having a backend database both for the users who assign the
 Frontend Development\
 **CORE LIBRARY:** `React`\
 **SCRIPTS:** `TypeScript`\
+**LAYOUT:** `HTML5`\
 **STYLE:** `CSS3 + TailwindCSS`\
 **ICONS:** `Lucide`
 
@@ -19,7 +20,7 @@ Backend Development\
 **SCRIPTS:** `TypeScript`\
 **DATABASE:** `PostgreSQL`\
 **ORM:** `Drizzle`\
-**PASSWORD ENCRYPTION:** `bcryptjs`\
+**HASH ENCRYPTION:** `bcryptjs`\
 **JWT SESSIONS:** `jose`
 
 ## Chosen Color Scheme:
@@ -33,7 +34,12 @@ $\color{#9CB080}\textsf{TEXT}$
 
 ## Implemented Features:
 
-- Adaptive Layout
-- Dynamic `input` placeholders
-
----
+- Integration of an optimized DB;
+- Adaptive layout;
+- Dynamic `input` and `textarea` placeholders;
+- Seamless and optimized combining of the Tailwind classes;
+- CVA dictionaries for components with multiple designs;
+- Password encryption with 10 salt rounds;
+- Modern `proxy` setup for Next.js routing;
+- HTTPS usage (in production);
+- JWT sessions;

@@ -1,4 +1,4 @@
-import 'server-only';
+'use server';
 
 import { db } from '@/db';
 import { users } from '@/db/schema';
@@ -26,16 +26,15 @@ export const authUser = async (
     return { error: 'Please enter password' };
 
   try {
-    const [user] = await db
+    let [user] = await db
       .select()
       .from(users)
       .where(eq(users.login, username.toLowerCase()));
-    
+
     if (!user)
       return { error: 'Authentication Failed' };
 
     const isPwdValid = await bcrypt.compare(password, user.password);
-
     if (!isPwdValid)
       return { error: 'Authentication Failed' };
 
