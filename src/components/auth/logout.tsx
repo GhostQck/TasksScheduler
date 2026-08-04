@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useTransition } from 'react';
+import { useTransition } from 'react';
 import { logoutUser } from '@/app/login/actions';
 
 import { Loader } from 'lucide-react';
