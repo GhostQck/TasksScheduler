@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { InputCounter, InputLabel } from '@/components/form/input';
-import Logout from '@/components/auth/logout';
+import NavMenu from '@/components/nav/NavMenu';
 
 export default function Root() {
   return (
@@ -9,13 +9,7 @@ export default function Root() {
         <div className='w-md bg-bg p-4 rounded-xl shadow-xl select-none'>
           <h2 className='w-full mb-4 text-center text-xl font-bold'>NEW TASK</h2>
 
-          <form
-            className='
-              grid grid-cols-4 gap-4 w-full
-
-              [grid-template-areas:"a_a_b_b"_"c_c_c_d"_"e_e_e_e"_"f_f_f_f"_"g_g_h_h"]
-            '
-          >
+          <form className='grid grid-cols-4 gap-4 w-full [grid-template-areas:"a_a_b_b"_"c_c_c_d"_"e_e_e_e"_"f_f_f_f"_"g_g_h_h"]'>
             <InputLabel
               id='n_task_cx'
               name='n_task_cx'
@@ -53,17 +47,7 @@ export default function Root() {
               <select
                 id='n_task_time'
                 name='n_task_time'
-                className='
-                  w-full py-3 px-4 bg-txt/30 ring-2 ring-txt/30 rounded-full cursor-pointer text-center font-inherit
-
-                  duration-200 transition-all ease-in-out
-
-                  hover:brightness-110
-                  
-                  focus:brightness-110 focus:ring-2 focus:ring-txt
-
-                  *:font-sans
-                '
+                className='w-full py-3 px-4 bg-txt/30 ring-2 ring-txt/30 rounded-full cursor-pointer text-center font-inherit duration-200 transition-all ease-in-out hover:brightness-110 focus:brightness-110 focus:ring-2 focus:ring-txt *:font-sans'
               >
                 <option value='hours'>hours</option>
                 <option value='days'>days</option>
@@ -77,15 +61,7 @@ export default function Root() {
                 rows={4}
                 maxLength={256}
                 placeholder=' '
-                className='
-                  peer block w-full bg-bg rounded-lg p-4 text-sm ring-2 ring-txt/30 resize-none
-
-                  duration-200 transition-all ease-in-out
-
-                  hover:ring-txt
-
-                  focus:outline-none focus:ring-txt
-                '
+                className='peer block w-full bg-bg rounded-lg p-4 text-sm ring-2 ring-txt/30 resize-none duration-200 transition-all ease-in-out hover:ring-txt focus:outline-none focus:ring-txt'
               />
 
               <label
@@ -122,31 +98,7 @@ export default function Root() {
         </div>
       </dialog>
       <header className='w-full'>
-        <nav
-          className='
-            hidden md:flex sticky top-0 flex-row gap-2 py-2 px-4 w-full items-center justify-center bg-txt text-bg text-lg shadow-xl select-none font-bold uppercase
-
-            [&>a]:py-1 [&>a]:px-4 [&>a]:bg-txt [&>a]:cursor-pointer [&>a]:rounded-md
-
-            [&>a]:duration-200 [&>a]:transition-all [&>a]:ease-in-out
-
-            [&>a]:hover:brightness-110 [&>a]:hover:shadow-md
-          '
-        >
-          <a>Main</a>
-          <a>All Tasks</a>
-          <a>Experts</a>
-          <a>Agents</a>
-
-          <div className='flex items-center gap-4 ml-auto h-full max-h-full shrink-0'>
-            <Logout />
-
-            <img
-              src='images/profile-pic.jpg'
-              className='h-10 w-auto object-contain rounded-full'
-            />
-          </div>
-        </nav>
+        <NavMenu />
 
         <h1
           className='

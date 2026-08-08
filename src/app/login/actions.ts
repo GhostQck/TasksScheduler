@@ -14,7 +14,7 @@ export type AuthFormState = {
 };
 
 export const authUser = async (
-  prevState: AuthFormState,
+  _prevState: AuthFormState,
   formData: FormData
 ): Promise<AuthFormState> => {
   const username = formData.get('auth_user') as string;
@@ -38,11 +38,7 @@ export const authUser = async (
     if (!isPwdValid)
       return { error: 'Authentication Failed' };
 
-    await createSession({
-      userId: user.id,
-      publicId: user.uuid,
-      role: user.role,
-    });
+    await createSession({ userId: user.id });
   } catch (err) {
     if (
       err instanceof Error
