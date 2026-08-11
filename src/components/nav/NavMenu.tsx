@@ -1,39 +1,13 @@
 import { getSession } from '@/lib/session';
-import { type UserRole } from '@/db/schema';
+import { ROUTES_ACCESS } from '@/lib/routes';
+import type { UserRole } from '@/db/schema';
 import NavLink from './NavLink';
 import Logout from '../auth/logout';
-
-interface NavItem {
-  label: string;
-  href: string;
-  roles?: UserRole[];
-}
-
-const navItems: NavItem[] = [
-  {
-    label: 'Main',
-    href: '/',
-  },
-  {
-    label: 'All Tasks',
-    href: '/tasks',
-  },
-  {
-    label: 'Experts',
-    href: '/experts',
-    roles: ['admin', 'tech'],
-  },
-  {
-    label: 'Agents',
-    href: '/agents',
-    roles: ['tech'],
-  }
-] as const;
 
 export default async function NavMenu() {
   const user = await getSession();
 
-  const userNavItems = navItems.filter(item => {
+  const userNavItems = ROUTES_ACCESS.filter(item => {
     if (!item.roles?.length) return true;
     else if (user)
       return item.roles.includes(user.role as UserRole);

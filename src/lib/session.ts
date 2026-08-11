@@ -1,23 +1,23 @@
 import { cache } from 'react';
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
-import { UserRole } from '@/db/schema';
 
 import { db } from '@/db';
 import { eq } from 'drizzle-orm';
 import { users } from '@/db/schema';
+import type { UserRole } from '@/db/schema';
 
 const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export type SessionPayload = {
   userId: number;
+  userRole: UserRole;
 };
 
-export type SessionUser = {
-  userId: number;
+export interface SessionUser {
+  session: SessionPayload;
   publicId: string;
   login: string;
-  role: UserRole;
   status: boolean;
 };
 
@@ -52,10 +52,12 @@ export const getSession = cache(async (): Promise<SessionUser | null> => {
 
     const [user] = await db
       .select({
-        userId: users.id,
+        session: {
+          userId: users.id,
+          userRole: users.role,
+        },
         publicId: users.uuid,
         login: users.login,
-        role: users.role,
         status: users.status,
       })
       .from(users)

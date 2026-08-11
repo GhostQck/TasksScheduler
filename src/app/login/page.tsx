@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useActionState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import { authUser, type AuthFormState } from './actions';
 
@@ -18,6 +19,9 @@ export default function Login() {
     isPending
   ] = useActionState(authUser, initialState);
 
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get('from') || '/';
+
   return (
     <main className='flex flex-col min-h-screen pt-[30vh] w-full justify-start items-center'>
       <section className='flex flex-col w-100 p-4 bg-fg rounded-xl shadow-lg items-center'>
@@ -29,6 +33,8 @@ export default function Login() {
           action={formAction}
           className='flex flex-col w-70 gap-4'
         >
+          <input type='hidden' name='redirectTo' value={redirectTo} />
+
           <InputLabel
             id='auth_user'
             name='auth_user'

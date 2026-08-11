@@ -19,6 +19,7 @@ export const authUser = async (
 ): Promise<AuthFormState> => {
   const username = formData.get('auth_user') as string;
   const password = formData.get('auth_pwd') as string;
+  const redirectTo = (formData.get('redirectTo') as string) || '/';
 
   if (!username)
     return { error: 'Please enter both username and password' };
@@ -38,7 +39,10 @@ export const authUser = async (
     if (!isPwdValid)
       return { error: 'Authentication Failed' };
 
-    await createSession({ userId: user.id });
+    await createSession({
+      userId: user.id,
+      userRole: user.role,
+    });
   } catch (err) {
     if (
       err instanceof Error
@@ -50,7 +54,7 @@ export const authUser = async (
     return { error: 'Unexpected error occurred' };
   }
 
-  redirect('/');
+  redirect(redirectTo);
 };
 
 export const logoutUser = async () => {
