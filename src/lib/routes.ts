@@ -8,10 +8,6 @@ export type Route = {
 
 export const ROUTES_ACCESS: Route[] = [
   {
-    label: 'Log In',
-    href: '/login',
-  },
-  {
     label: 'Main',
     href: '/',
   },

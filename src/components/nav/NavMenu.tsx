@@ -9,8 +9,8 @@ export default async function NavMenu() {
 
   const userNavItems = ROUTES_ACCESS.filter(item => {
     if (!item.roles?.length) return true;
-    else if (user)
-      return item.roles.includes(user.role as UserRole);
+    else if (user?.session)
+      return item.roles.includes(user.session.userRole as UserRole);
 
     return false;
   });
