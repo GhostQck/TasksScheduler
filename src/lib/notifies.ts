@@ -25,4 +25,9 @@ export const MSGS_MAP: Record<string, Omit<NotifyMessage, 'id'>> = {
     title: 'Authentication Required',
     description: 'Please log in to access that area',
   },
+  login_success: {
+    type: 'success',
+    title: 'Logged In',
+    description: 'You have successfully logged in',
+  },
 } as const;

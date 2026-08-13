@@ -44,3 +44,12 @@
   --background-image-gr-blue: linear-gradient(90deg, #004680 0%, #4484BA 100%);
   --background-image-gr-yellow: linear-gradient(90deg, #CAC531 0%, #F3F9A7 100%);
 }
+
+@keyframes notify-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

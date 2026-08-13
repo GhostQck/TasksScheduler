@@ -54,7 +54,7 @@ export const authUser = async (
     return { error: 'Unexpected error occurred' };
   }
 
-  redirect(redirectTo);
+  redirect(`${redirectTo}?notify=login_success`);
 };
 
 export const logoutUser = async () => {

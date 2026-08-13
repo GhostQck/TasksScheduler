@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
+import Notification from '@/components/ui/Notification';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -29,6 +31,10 @@ export default function RootLayout({
     >
       <body className='min-h-full flex flex-col bg-bg'>
         {children}
+
+        <Suspense fallback={null}>
+          <Notification />
+        </Suspense>
       </body>
     </html>
   );
