@@ -23,9 +23,9 @@ export default function Logout() {
       className='bg-neg-800 text-neg-200 hover:text-neg-200 hover:bg-neg-600'
     >
       {isPending ? (
-        <Loader strokeWidth={2} />
+        <Loader size={20} strokeWidth={2} />
       ) : (
-        <LogOut strokeWidth={2} />
+        <LogOut size={20} strokeWidth={2} />
       )}
     </Button>
   );
