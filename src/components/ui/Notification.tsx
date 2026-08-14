@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { NotifyMessage, MSGS_MAP } from '@/lib/notifies';
+import { NotifyMessage, MSGS_MAP, NotifyNames } from '@/lib/notifies';
 import NotifyBlock from './NotifyBlock';
 
 const DISMISS_TIME = 4000;
@@ -24,7 +24,7 @@ export default function Notification() {
   }, []);
 
   useEffect(() => {
-    const notifyKey = searchParams.get('notify');
+    const notifyKey = searchParams.get('notify') as NotifyNames;
 
     if (notifyKey && MSGS_MAP[notifyKey]) {
       const notifyInfo = MSGS_MAP[notifyKey];

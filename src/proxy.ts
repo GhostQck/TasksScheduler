@@ -4,6 +4,7 @@ import { jwtVerify } from 'jose';
 import type { SessionPayload } from './lib/session';
 import type { UserRole } from '@/db/schema';
 import { type Route, ROUTES_ACCESS } from '@/lib/routes';
+import { getNotifyUrl } from './lib/notifies';
 
 const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET);
 
@@ -26,7 +27,10 @@ export const proxy = async (req: NextRequest) => {
 
   if (!session) {
     if (!isLoginPage) {
-      const loginUrl = new URL('/login', req.url);
+      const loginUrl = getNotifyUrl(
+        new URL('/login', req.url),
+        'login_required'
+      );
 
       if (pathname !== '/')
         loginUrl.searchParams.set('from', pathname);
@@ -47,7 +51,10 @@ export const proxy = async (req: NextRequest) => {
   if (
     allowedRoles &&
     !allowedRoles.includes(session.userRole as UserRole)
-  ) return NextResponse.redirect(new URL('/', req.url));
+  ) return NextResponse.redirect(getNotifyUrl(
+    new URL('/', req.url),
+    'unauthorized'
+  ));
 
   return NextResponse.next();
 };

@@ -1,5 +1,3 @@
-import { unauthorized } from 'next/navigation';
-
 export type NotifyTypes = 'error' | 'success' | 'info';
 
 export interface NotifyMessage {
@@ -9,7 +7,15 @@ export interface NotifyMessage {
   description: string;
 }
 
-export const MSGS_MAP: Record<string, Omit<NotifyMessage, 'id'>> = {
+const allNames = [
+  'unauthorized',
+  'session_expired',
+  'login_required',
+  'login_success'
+] as const;
+export type NotifyNames = (typeof allNames)[number];
+
+export const MSGS_MAP: Record<NotifyNames, Omit<NotifyMessage, 'id'>> = {
   unauthorized: {
     type: 'error',
     title: 'Access Denied',
@@ -21,7 +27,7 @@ export const MSGS_MAP: Record<string, Omit<NotifyMessage, 'id'>> = {
     description: 'Please log in again to continue',
   },
   login_required: {
-    type: 'info',
+    type: 'error',
     title: 'Authentication Required',
     description: 'Please log in to access that area',
   },
@@ -31,3 +37,10 @@ export const MSGS_MAP: Record<string, Omit<NotifyMessage, 'id'>> = {
     description: 'You have successfully logged in',
   },
 } as const;
+
+export const getNotifyUrl = (
+  initUrl: URL, notify: NotifyNames
+): URL => {
+  initUrl.searchParams.set('notify', notify);
+  return initUrl;
+};
