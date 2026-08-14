@@ -39,7 +39,8 @@ export const MSGS_MAP: Record<NotifyNames, Omit<NotifyMessage, 'id'>> = {
 } as const;
 
 export const getNotifyUrl = (
-  initUrl: URL, notify: NotifyNames
+  initUrl: URL,
+  notify: NotifyNames
 ): URL => {
   initUrl.searchParams.set('notify', notify);
   return initUrl;
