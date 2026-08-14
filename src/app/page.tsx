@@ -2,6 +2,8 @@ import { Button } from '@/components/ui/button';
 import { InputCounter, InputLabel } from '@/components/form/input';
 import NavMenu from '@/components/nav/NavMenu';
 
+import { X, Copy, FileText, UserRoundSearch, ArrowDownWideNarrow } from 'lucide-react';
+
 export default function Root() {
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
@@ -168,9 +170,13 @@ export default function Root() {
               <div className='flex flex-row gap-2 justify-start items-center'>
                 <h3 className='font-bold text-lg'>Expert-1</h3>
 
-                <Button intent='square'>E</Button>
+                <Button intent='square'>
+                  <UserRoundSearch size={20} strokeWidth={2} />
+                </Button>
 
-                <Button intent='square'>C</Button>
+                <Button intent='square'>
+                  <X size={20} strokeWidth={2} />
+                </Button>
               </div>
             </div>
 
@@ -244,19 +250,31 @@ export default function Root() {
                 <ul className='[&>li>strong]:leading-loose [&>li>strong]:select-none'>
                   <li>
                     <strong>CX ID: </strong>
-                    <Button intent='tight'>000000</Button>
+                    <Button intent='tight'>
+                      000000
+                      <Copy className='ml-1' size={15} strokeWidth={2} />
+                    </Button>
                   </li>
                   <li>
                     <strong>CHAT ID: </strong>
-                    <Button intent='tight'>123450000099999</Button>
+                    <Button intent='tight'>
+                      123450000099999
+                      <Copy className='ml-1' size={15} strokeWidth={2} />
+                    </Button>
                   </li>
                   <li>
                     <strong>SUBMITTED: </strong>
-                    <Button intent='tight'>23.07.2026 - 6 PM</Button>&nbsp;by Nick
+                    <Button intent='tight'>
+                      23.07.2026 - 6 PM
+                      <Copy className='ml-1' size={15} strokeWidth={2} />
+                    </Button>&nbsp;by Nick
                   </li>
                   <li>
                     <strong>DEADLINE: </strong>
-                    <Button intent='tight'>24.07.2026 - 11 PM</Button>
+                    <Button intent='tight'>
+                      24.07.2026 - 11 PM
+                      <Copy className='ml-1' size={15} strokeWidth={2} />
+                    </Button>
                   </li>
                   <li>
                     <strong className='block'>DESCRIPTION: </strong>
@@ -266,15 +284,23 @@ export default function Root() {
               </div>
 
               <div className='relative flex flex-row gap-2 pt-1 w-full'>
-                <Button intent='square'>U</Button>
+                <Button intent='square'>
+                  <UserRoundSearch size={20} strokeWidth={2} />
+                </Button>
 
-                <Button intent='square'>T</Button>
+                <Button intent='square'>
+                  <FileText size={20} strokeWidth={2} />
+                </Button>
 
-                <Button>more details ▼</Button>
+                <Button>
+                  more details
+                  <ArrowDownWideNarrow className='ml-1' size={20} strokeWidth={2} />
+                </Button>
                 
-                <Button
-                  className='absolute right-[.75]'
-                >cancel</Button>
+                <Button className='absolute right-[.75]'>
+                  cancel
+                  <X size={20} strokeWidth={2} />
+                </Button>
               </div>
             </div>
           </div>
