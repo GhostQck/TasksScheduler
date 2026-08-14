@@ -7,6 +7,7 @@ import Logout from '../auth/logout';
 export default async function NavMenu() {
   const user = await getSession();
 
+  const username = user?.login || 'Unknown';
   const userNavItems = ROUTES_ACCESS.filter(item => {
     if (!item.roles?.length) return true;
     else if (user?.session)
@@ -24,12 +25,8 @@ export default async function NavMenu() {
       ))}
 
       <div className='flex items-center gap-4 ml-auto h-full max-h-full shrink-0'>
+        <span className='normal-case'>{username}</span>
         <Logout />
-
-        <img
-          src='images/profile-pic.jpg'
-          className='h-10 w-auto object-contain rounded-full'
-        />
       </div>
     </nav>
   );

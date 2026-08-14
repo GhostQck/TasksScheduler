@@ -3,7 +3,7 @@
 import { useTransition } from 'react';
 import { logoutUser } from '@/app/login/actions';
 
-import { Loader } from 'lucide-react';
+import { LogOut, Loader } from 'lucide-react';
 import { Button } from '../ui/button';
 
 export default function Logout() {
@@ -19,15 +19,14 @@ export default function Logout() {
     <Button
       onClick={handleLogout}
       disabled={isPending}
-      intent='cancel'
-      className='bg-neg-200/40'
+      intent='square'
+      className='bg-neg-800 text-neg-200 hover:text-neg-200 hover:bg-neg-600'
     >
       {isPending ? (
-        <>
-          <Loader strokeWidth={2} className='inline-block mr-2 size-[1.1rem] -translate-y-[0.1rem]' />
-          Loading...
-        </>
-      ) : 'Log Out'}
+        <Loader strokeWidth={2} />
+      ) : (
+        <LogOut strokeWidth={2} />
+      )}
     </Button>
   );
 }
