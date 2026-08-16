@@ -1,6 +1,6 @@
 import NavMenu from '@/components/nav/NavMenu';
 import { Button } from '@/components/ui/button';
-import { X, Pencil, UserRoundPlus, UserRoundSearch, Trash2, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
+import { X, Pencil, Info, UserRoundPlus, UserRoundSearch, ShieldBan, Trash2, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
 
 export default function Experts() {
   return (
@@ -8,16 +8,12 @@ export default function Experts() {
       <header className='w-full'>
         <NavMenu />
 
-        <h1
-          className='
-            w-full p-4 text-xl font-extrabold uppercase
-
-            md:text-2xl lg:text-4xl text-center
-          '
-        >NOW : Expert-1</h1>
+        <h1 className='w-full p-4 text-xl font-extrabold uppercase md:text-2xl lg:text-4xl text-center'>
+          NOW : Expert-1
+        </h1>
       </header>
 
-      <div className='grid gap-8 lg:grid-cols-[4fr_auto_4fr] items-start w-3xl'>
+      <div className='grid gap-8 md:grid-cols-[4fr_auto_4fr] items-start w-3xl'>
         <section className='flex flex-col gap-4'>
           <div className='flex flex-row items-center gap-1 select-none'>
             <Button className='peer' intent='create'>
@@ -34,6 +30,14 @@ export default function Experts() {
             <div className='flex flex-row gap-2 justify-end'>
               <Button intent='square'>
                 <UserRoundSearch size={20} strokeWidth={2} />
+              </Button>
+
+              <Button intent='square'>
+                <Info size={20} strokeWidth={2} />
+              </Button>
+
+              <Button intent='square'>
+                <ShieldBan size={20} strokeWidth={2} />
               </Button>
 
               <Button
@@ -53,6 +57,14 @@ export default function Experts() {
                 <UserRoundSearch size={20} strokeWidth={2} />
               </Button>
 
+              <Button intent='square'>
+                <Info size={20} strokeWidth={2} />
+              </Button>
+
+              <Button intent='square'>
+                <ShieldBan size={20} strokeWidth={2} />
+              </Button>
+
               <Button
                 intent='square'
                 className='bg-neg-800 text-neg-200 hover:bg-neg-600'
@@ -65,7 +77,7 @@ export default function Experts() {
 
         <hr className='w-1 h-full bg-txt border-none rounded-full shadow-md' />
 
-        <section className='hidden lg:block'>
+        <section className='hidden md:block'>
           <div className='grid grid-cols-[auto_1fr_auto_auto] gap-2 w-full'>
             <Button intent='square'>
               <ArrowBigLeft size={20} strokeWidth={2} />
@@ -106,6 +118,10 @@ export default function Experts() {
               <div className='flex flex-row gap-2 justify-end'>
                 <Button intent='square'>
                   <UserRoundSearch size={20} strokeWidth={2} />
+                </Button>
+
+                <Button intent='square'>
+                  <Info size={20} strokeWidth={2} />
                 </Button>
 
                 <Button intent='square'>

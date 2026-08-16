@@ -50,6 +50,13 @@
       "when": 1785485722418,
       "tag": "0006_curious_secret_warriors",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1786901084752,
+      "tag": "0007_clumsy_terrax",
+      "breakpoints": true
     }
   ]
 }
