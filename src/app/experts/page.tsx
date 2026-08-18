@@ -1,6 +1,7 @@
 import NavMenu from '@/components/nav/NavMenu';
 import { Button } from '@/components/ui/button';
 import { X, Pencil, Info, UserRoundPlus, UserRoundSearch, ShieldBan, Trash2, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
+import { DeactivateButton, DeleteButton, InfoButton } from './modalButtons';
 
 export default function Experts() {
   return (
@@ -32,20 +33,22 @@ export default function Experts() {
                 <UserRoundSearch size={20} strokeWidth={2} />
               </Button>
 
-              <Button intent='square'>
-                <Info size={20} strokeWidth={2} />
-              </Button>
+              <InfoButton
+                expertId='1'
+                expertName='Expert-1'
+                addedBy='Jack'
+                addedDate='18.08.2026'
+              />
 
-              <Button intent='square'>
-                <ShieldBan size={20} strokeWidth={2} />
-              </Button>
+              <DeactivateButton
+                expertId='1'
+                expertName='Expert-1'
+              />
 
-              <Button
-                intent='square'
-                className='bg-neg-800 text-neg-200 hover:bg-neg-600'
-              >
-                <Trash2 size={20} strokeWidth={2} />
-              </Button>
+              <DeleteButton
+                expertId='1'
+                expertName='Expert-1'
+              />
             </div>
           </div>
 

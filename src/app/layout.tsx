@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Notification from '@/components/ui/Notification';
+import { ModalProvider } from '@/components/modals/ModalContext';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -30,7 +31,9 @@ export default function RootLayout({
       className={`${montserrat.className} text-txt h-full antialiased`}
     >
       <body className='min-h-full flex flex-col bg-bg'>
-        {children}
+        <ModalProvider>
+          {children}
+        </ModalProvider>
 
         <Suspense fallback={null}>
           <Notification />
