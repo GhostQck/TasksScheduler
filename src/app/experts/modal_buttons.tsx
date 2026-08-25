@@ -23,12 +23,11 @@ export const InfoButton = ({
   const { openModal } = useModal();
 
   const onClick = () => openModal({
+    type: 'info',
     title: `${expertName} Details`,
-    description: `Added by ${addedBy} on ${addedDate}`,
-    confirmLabel: 'Deactivate',
-    cancelLabel: 'Close',
-    onConfirm: async () => {
-      console.log('deactivated ', expertId);
+    description: {
+      'Added by': addedBy,
+      'Added on': addedDate,
     },
   });
 
@@ -46,6 +45,7 @@ export const DeactivateButton = ({ expertId, expertName }: ExpertPayload) => {
   const { openModal } = useModal();
 
   const onClick = () => openModal({
+    type: 'confirm',
     title: `Deactivate ${expertName}?`,
     description: `If you deactivate ${expertName}, their instance will be hidden from the expert list for everyone.`,
     isDanger: true,
@@ -68,6 +68,7 @@ export const DeleteButton = ({ expertId, expertName }: ExpertPayload) => {
   const { openModal } = useModal();
 
   const onClick = () => openModal({
+    type: 'confirm',
     title: `Delete ${expertName}?`,
     description: `If you delete ${expertName}, they will be completely erased from the database alongside any other instance connected to them.`,
     isDanger: true,

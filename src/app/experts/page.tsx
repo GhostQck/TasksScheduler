@@ -1,7 +1,7 @@
 import NavMenu from '@/components/nav/NavMenu';
 import { Button } from '@/components/ui/button';
 import { X, Pencil, Info, UserRoundPlus, UserRoundSearch, ShieldBan, Trash2, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
-import { DeactivateButton, DeleteButton, InfoButton } from './modalButtons';
+import { DeactivateButton, DeleteButton, InfoButton } from './modal_buttons';
 
 export default function Experts() {
   return (

@@ -1,28 +1,25 @@
 'use client';
 
 import React, { createContext, useContext, useState } from 'react';
-import ModalConfirm, { ModalConfirmBase } from './ModalConfirm';
-
-interface ModalProviderProps extends Omit<ModalConfirmBase, 'onCancel'> {}
-
-type OpenModalFunc = (options: ModalProviderProps) => void;
-type CloseModalFunc = () => void;
+import ModalConfirm from './ModalConfirm';
+import ModalInfo from './ModalInfo';
+import { AllModalOptions } from './modal_utils';
 
 interface ModalContextType {
-  openModal: OpenModalFunc;
-  closeModal: CloseModalFunc;
+  openModal: (options: AllModalOptions) => void;
+  closeModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);
 
 export function ModalProvider({ children }: { children: React.ReactNode }) {
-  const [modalOptions, setModalOptions] = useState<ModalProviderProps | null>(null);
+  const [modalOptions, setModalOptions] = useState<AllModalOptions | null>(null);
 
-  const openModal: OpenModalFunc = options => {
+  const openModal = (options: AllModalOptions) => {
     setModalOptions(options);
   };
 
-  const closeModal: CloseModalFunc = () => {
+  const closeModal = () => {
     setModalOptions(null);
   };
 
@@ -30,9 +27,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
 
-      {modalOptions && (
+      {modalOptions?.type === 'confirm' && (
         <ModalConfirm
-          isOpen={modalOptions !== null}
+          isOpen={true}
           isDanger={modalOptions.isDanger}
           title={modalOptions.title}
           description={modalOptions.description}
@@ -42,7 +39,16 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
             await modalOptions.onConfirm();
             closeModal();
           }}
-          onCancel={closeModal}
+          onClose={closeModal}
+        />
+      )}
+
+      {modalOptions?.type === 'info' && (
+        <ModalInfo
+          isOpen={true}
+          title={modalOptions.title}
+          description={modalOptions.description}
+          onClose={closeModal}
         />
       )}
     </ModalContext.Provider>

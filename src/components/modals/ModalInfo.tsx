@@ -1,27 +1,24 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { AlertTriangle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Button } from '../ui/button';
-import { ModalConfirmOptions, toggleDialog } from './modal_utils';
+import { ModalInfoOptions, toggleDialog } from './modal_utils';
 
-interface ModalConfirmProps extends Omit<ModalConfirmOptions, 'type'> {
+interface ModalInfoProps extends Omit<ModalInfoOptions, 'type'> {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function ModalConfirm({
+export default function ModalInfo({
   isOpen,
-  isDanger = false,
   title,
   description = '',
-  confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
-  onConfirm,
-  onClose,
-}: ModalConfirmProps) {
+  onClose
+}: ModalInfoProps) {
   if (!isOpen) return null;
-
+  
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -46,11 +43,6 @@ export default function ModalConfirm({
     if (isClickOut) onClose();
   };
 
-  const onSuccess = () => {
-    onConfirm();
-    onClose();
-  };
-
   return (
     <dialog
       ref={dialogRef}
@@ -60,11 +52,6 @@ export default function ModalConfirm({
     >
       <div className='flex items-start justify-between gap-4'>
         <div className='flex items-center gap-4'>
-          {isDanger && (
-            <div className='p-2 rounded-lg bg-neg/10 border border-neg-400/20 text-neg-400'>
-              <AlertTriangle className='' />
-            </div>
-          )}
           <h3 className='text-lg font-semibold text-white'>
             {title}
           </h3>
@@ -79,7 +66,14 @@ export default function ModalConfirm({
         </Button>
       </div>
 
-      {description !== '' && (
+      {description !== '' && typeof description === 'object' ? Object.keys(description).map(key => (
+        <p key={key} className='text-sm text-txt-200 mt-3 leading-relaxed'>
+          <span className='font-bold'>
+            {`${key}: `}
+          </span>
+          {description[key]}
+        </p>
+      )) : (
         <p className='text-sm text-txt-200 mt-3 leading-relaxed'>
           {description}
         </p>
@@ -89,15 +83,7 @@ export default function ModalConfirm({
         <Button
           onClick={onClose}
           className='shadow-none bg-bg hover:bg-bg-400 hover:shadow-none'
-        >
-          {cancelLabel}
-        </Button>
-
-        <Button
-          onClick={onSuccess}
-        >
-          {confirmLabel}
-        </Button>
+        >{cancelLabel}</Button>
       </div>
     </dialog>
   );
