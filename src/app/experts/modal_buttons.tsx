@@ -2,9 +2,9 @@
 
 import { useModal } from '@/components/modals/ModalContext';
 import { Button } from '@/components/ui/button';
-import { Info, ShieldBan, Trash2, UserRoundPlus } from 'lucide-react';
+import { Info, ShieldBan, Trash2, UserRoundPlus, LockKeyholeOpen } from 'lucide-react';
 import { NewExpertForm } from './modal_forms';
-import { deactivateExpertAction, deleteExpertAction } from './actions';
+import { activateExpertAction, deactivateExpertAction, deleteExpertAction } from './actions';
 import { useRouter } from 'next/navigation';
 
 interface ExpertPayload {
@@ -118,6 +118,31 @@ export const DeleteButton = ({ expertId, expertName }: ExpertPayload) => {
       className='bg-neg-800 text-neg-200 hover:bg-neg-600'
     >
       <Trash2 size={20} strokeWidth={2} />
+    </Button>
+  );
+};
+
+export const ActivateButton = ({ expertId, expertName }: ExpertPayload) => {
+  const router = useRouter();
+  const { openModal } = useModal();
+
+  const onClick = () => openModal({
+    type: 'confirm',
+    title: `Activate ${expertName}?`,
+    description: `If you activate ${expertName}, their instance will be shown within the expert list for everyone.`,
+    isDanger: true,
+    onConfirm: async () => {
+      const state = await activateExpertAction(expertId);
+      router.push(`/experts?notify=${state.notify || 'unknown'}&value=${state.name || 'Expert'}`);
+    },
+  });
+
+  return (
+    <Button
+      intent='square'
+      onClick={onClick}
+    >
+      <LockKeyholeOpen size={20} strokeWidth={2} />
     </Button>
   );
 };

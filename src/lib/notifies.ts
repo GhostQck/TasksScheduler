@@ -18,6 +18,8 @@ const allNames = [
   'expert_already_blocked',
   'expert_deactivated',
   'expert_deleted',
+  'expert_already_active',
+  'expert_activated',
 ] as const;
 export type NotifyNames = (typeof allNames)[number];
 
@@ -71,6 +73,16 @@ export const MSGS_MAP: Record<NotifyNames, (_value?: string) => Omit<NotifyMessa
     type: 'success',
     title: 'Expert deleted',
     description: `${_value} has been successfully deleted from the database`,
+  }),
+  expert_already_active: (_value = 'That expert') => ({
+    type: 'error',
+    title: 'Expert is already active',
+    description: `${_value} already has the 'active' status`,
+  }),
+  expert_activated: (_value = 'That expert') => ({
+    type: 'success',
+    title: 'Expert activated',
+    description: `${_value} has been successfully activated`,
   }),
 } as const;
 

@@ -5,9 +5,9 @@ import { getSession } from '@/lib/session';
 
 import NavMenu from '@/components/nav/NavMenu';
 import { Button } from '@/components/ui/button';
-import { X, Pencil, Info, UserRoundPlus, UserRoundSearch, ShieldBan, Trash2, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
-import { DeactivateButton, DeleteButton, InfoButton, NewExpertButton } from './modal_buttons';
-import { EXPERT_BTNS } from './permissions';
+import { X, Pencil, Info, UserRoundSearch, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
+import { NewExpertButton } from './modal_buttons';
+import ExpertList from './expert_list';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,9 +26,6 @@ export default async function Experts() {
 
   const user = await getSession();
   const role = user?.session.userRole || null;
-
-  const activeExperts = role ? allExperts.filter(expert => expert.status) : [];
-  const inactiveExperts = role === 'admin' || role === 'tech' ? allExperts.filter(expert => !expert.status) : [];
 
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
@@ -49,60 +46,8 @@ export default async function Experts() {
             <span className='opacity-50 transition-opacity peer-hover:opacity-100'>Add new expert</span>
           </div>
 
-          {activeExperts.length !== 0 ? (
-            <div className='flex flex-col gap-4'>
-              {activeExperts.map(expert => (
-                <div
-                  key={expert.id}
-                  className='grid grid-cols-2 items-center gap-2 w-full bg-hl p-4 rounded-lg shadow-lg'
-                >
-                  <h3 className='font-bold'>{expert.name}</h3>
-
-                  <div className='flex flex-row gap-2 justify-end'>
-                    <Button intent='square'>
-                      <UserRoundSearch size={20} strokeWidth={2} />
-                    </Button>
-
-                    {role && (
-                      <>
-                        {EXPERT_BTNS.info.includes(role) && (
-                          <InfoButton
-                            expertId={expert.id}
-                            expertName={expert.name}
-                            addedBy={expert.addedByName || 'Unknown'}
-                            addedDate={expert.addedAt.toLocaleDateString('en-US')}
-                          />
-                        )}
-
-                        {EXPERT_BTNS.deactivate.includes(role) && (
-                          <DeactivateButton
-                            expertId={expert.id}
-                            expertName={expert.name}
-                          />
-                        )}
-
-                        {EXPERT_BTNS.delete.includes(role) && (
-                          <DeleteButton
-                            expertId={expert.id}
-                            expertName={expert.name}
-                          />
-                        )}
-                      </>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>
-              No active experts
-            </p>
-          )}
-
-          {inactiveExperts.length > 0 && (
-            <div className='flex flex-col gap-4'>
-
-            </div>
+          {allExperts.length > 0 && (
+            <ExpertList role={role} experts={allExperts} />
           )}
         </section>
 

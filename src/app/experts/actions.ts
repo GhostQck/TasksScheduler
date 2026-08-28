@@ -206,3 +206,62 @@ export const deleteExpertAction = async (expertId: string): Promise<DefaultExper
     };
   }
 };
+
+export const activateExpertAction = async (expertId: string): Promise<DefaultExpertState> => {
+  const user = await getSession();
+
+  if (!user || !user.session) return {
+    success: false,
+    notify: 'login_required',
+  };
+
+  const role = user.session.userRole as UserRole;
+  if (!role || !PERMISSIONS.deactiveExpertAction.includes(role)) return {
+    success: false,
+    notify: 'unauthorized',
+  };
+
+  try {
+    const [expert] = await db
+      .select({
+        id: experts.id,
+        name: experts.name,
+        status: experts.status,
+      })
+      .from(experts)
+      .where(eq(experts.uuid, expertId))
+      .limit(1);
+
+    if (!expert) return {
+      success: false,
+      notify: 'expert_nonexist',
+    };
+
+    if (expert.status) return {
+      success: false,
+      notify: 'expert_already_active',
+      name: expert.name,
+    };
+
+    await db
+      .update(experts)
+      .set({
+        status: true,
+      })
+      .where(eq(experts.id, expert.id));
+
+    revalidatePath('/experts');
+
+    return {
+      success: true,
+      notify: 'expert_activated',
+      name: expert.name,
+    };
+  } catch (err) {
+    console.error('Database Error (activateExpertAction): ', err);
+    return {
+      success: false,
+      notify: 'database_error',
+    };
+  }
+};
