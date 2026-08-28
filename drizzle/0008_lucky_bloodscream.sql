@@ -1,0 +1,1 @@
+ALTER TABLE "experts" ADD COLUMN "name" varchar(320) NOT NULL;

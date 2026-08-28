@@ -1,0 +1,1 @@
+ALTER TABLE "experts" DROP COLUMN "schedule";

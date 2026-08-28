@@ -1,9 +1,35 @@
+import { db } from '@/db';
+import { experts, users } from '@/db/schema';
+import { desc, eq } from 'drizzle-orm';
+import { getSession } from '@/lib/session';
+
 import NavMenu from '@/components/nav/NavMenu';
 import { Button } from '@/components/ui/button';
 import { X, Pencil, Info, UserRoundPlus, UserRoundSearch, ShieldBan, Trash2, ArrowBigRight, ArrowBigLeft, ChevronLeft, ChevronRight, MoveRight } from 'lucide-react';
-import { DeactivateButton, DeleteButton, InfoButton } from './modal_buttons';
+import { DeactivateButton, DeleteButton, InfoButton, NewExpertButton } from './modal_buttons';
+import { EXPERT_BTNS } from './permissions';
 
-export default function Experts() {
+export const dynamic = 'force-dynamic';
+
+export default async function Experts() {
+  const allExperts = await db
+    .select({
+      id: experts.uuid,
+      name: experts.name,
+      status: experts.status,
+      addedAt: experts.addedAt,
+      addedByName: users.login,
+    })
+    .from(experts)
+    .leftJoin(users, eq(experts.addedBy, users.id))
+    .orderBy(desc(experts.addedAt));
+
+  const user = await getSession();
+  const role = user?.session.userRole || null;
+
+  const activeExperts = role ? allExperts.filter(expert => expert.status) : [];
+  const inactiveExperts = role === 'admin' || role === 'tech' ? allExperts.filter(expert => !expert.status) : [];
+
   return (
     <main className='flex flex-col min-h-screen w-full justify-start items-center'>
       <header className='w-full'>
@@ -17,65 +43,61 @@ export default function Experts() {
       <div className='grid gap-8 md:grid-cols-[4fr_auto_4fr] items-start w-3xl'>
         <section className='flex flex-col gap-4'>
           <div className='flex flex-row items-center gap-1 select-none'>
-            <Button className='peer' intent='create'>
-              <UserRoundPlus className='-translate-y-[5%] translate-x-[5%]' strokeWidth={2} />
-            </Button>
+            <NewExpertButton />
 
             <ChevronLeft className='opacity-50 transition-opacity peer-hover:opacity-100' size={25} strokeWidth={1} /> 
             <span className='opacity-50 transition-opacity peer-hover:opacity-100'>Add new expert</span>
           </div>
 
-          <div className='grid grid-cols-2 items-center gap-2 w-full bg-hl p-4 rounded-lg shadow-lg'>
-            <h3 className='font-bold'>Expert-1</h3>
+          {activeExperts.length !== 0 ? (
+            <div className='flex flex-col gap-4'>
+              {activeExperts.map(expert => (
+                <div
+                  key={expert.id}
+                  className='grid grid-cols-2 items-center gap-2 w-full bg-hl p-4 rounded-lg shadow-lg'
+                >
+                  <h3 className='font-bold'>{expert.name}</h3>
 
-            <div className='flex flex-row gap-2 justify-end'>
-              <Button intent='square'>
-                <UserRoundSearch size={20} strokeWidth={2} />
-              </Button>
+                  <div className='flex flex-row gap-2 justify-end'>
+                    <Button intent='square'>
+                      <UserRoundSearch size={20} strokeWidth={2} />
+                    </Button>
 
-              <InfoButton
-                expertId='1'
-                expertName='Expert-1'
-                addedBy='Jack'
-                addedDate='18.08.2026'
-              />
+                    {role && (
+                      <>
+                        {EXPERT_BTNS.info.includes(role) && (
+                          <InfoButton
+                            expertId={expert.id}
+                            expertName={expert.name}
+                            addedBy={expert.addedByName || 'Unknown'}
+                            addedDate={expert.addedAt.toLocaleDateString('en-US')}
+                          />
+                        )}
 
-              <DeactivateButton
-                expertId='1'
-                expertName='Expert-1'
-              />
+                        {EXPERT_BTNS.deactivate.includes(role) && (
+                          <DeactivateButton
+                            expertId={expert.id}
+                            expertName={expert.name}
+                          />
+                        )}
 
-              <DeleteButton
-                expertId='1'
-                expertName='Expert-1'
-              />
+                        {EXPERT_BTNS.delete.includes(role) && (
+                          <DeleteButton
+                            expertId={expert.id}
+                            expertName={expert.name}
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-
-          <div className='grid grid-cols-2 items-center gap-2 w-full bg-hl p-4 rounded-lg shadow-lg'>
-            <h3 className='font-bold'>Expert-2</h3>
-
-            <div className='flex flex-row gap-2 justify-end'>
-              <Button intent='square'>
-                <UserRoundSearch size={20} strokeWidth={2} />
-              </Button>
-
-              <Button intent='square'>
-                <Info size={20} strokeWidth={2} />
-              </Button>
-
-              <Button intent='square'>
-                <ShieldBan size={20} strokeWidth={2} />
-              </Button>
-
-              <Button
-                intent='square'
-                className='bg-neg-800 text-neg-200 hover:bg-neg-600'
-              >
-                <Trash2 size={20} strokeWidth={2} />
-              </Button>
-            </div>
-          </div>
+          ) : (
+            <p>
+              No active experts
+            </p>
+          )}
         </section>
 
         <hr className='w-1 h-full bg-txt border-none rounded-full shadow-md' />

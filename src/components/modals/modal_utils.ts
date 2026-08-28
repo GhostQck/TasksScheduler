@@ -1,3 +1,5 @@
+import React, { RefObject } from 'react';
+
 interface ModalOptions {
   title: string;
   cancelLabel?: string;
@@ -18,9 +20,9 @@ export interface ModalInfoOptions extends ModalOptions {
 
 export interface ModalFormOptions extends ModalOptions {
   type: 'form';
-  formStructure: HTMLFormElement;
   confirmLabel?: string;
-  onConfirm: () => Promise<void> | void;
+  formId?: string;
+  content: (formId: string) => React.ReactNode;
 }
 
 export type AllModalOptions =

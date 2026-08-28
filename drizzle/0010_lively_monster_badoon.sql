@@ -1,0 +1,1 @@
+ALTER TABLE "experts" ADD COLUMN "added_at" timestamp with time zone DEFAULT now() NOT NULL;

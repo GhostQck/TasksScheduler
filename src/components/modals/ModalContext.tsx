@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 import ModalConfirm from './ModalConfirm';
 import ModalInfo from './ModalInfo';
 import { AllModalOptions } from './modal_utils';
+import ModalForm from './ModalForm';
 
 interface ModalContextType {
   openModal: (options: AllModalOptions) => void;
@@ -48,6 +49,16 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
           isOpen={true}
           title={modalOptions.title}
           description={modalOptions.description}
+          onClose={closeModal}
+        />
+      )}
+
+      {modalOptions?.type === 'form' && (
+        <ModalForm
+          isOpen={true}
+          title={modalOptions.title}
+          confirmLabel={modalOptions.confirmLabel}
+          content={modalOptions.content}
           onClose={closeModal}
         />
       )}

@@ -8,7 +8,7 @@ export type UserRole = (typeof USER_ROLES)[number];
 const TASK_STATUS = [
   'new', 'in Progress', 'canceled', 'done'
 ] as const;
-export type TastStatus = (typeof TASK_STATUS)[number];
+export type TaskStatus = (typeof TASK_STATUS)[number];
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -25,11 +25,14 @@ export const experts = pgTable('experts', {
   id: serial('id').primaryKey(),
   uuid: uuid('uuid').defaultRandom().notNull().unique(),
   cxId: varchar('cx_id', { length: 7 }).notNull(),
+  name: varchar('name', { length: 320 }).notNull(),
   status: boolean('status').default(true).notNull(),
   addedBy: integer('added_by')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  schedule: json('schedule').notNull(),
+  addedAt: timestamp('added_at', { withTimezone: true, mode: 'date' })
+    .defaultNow()
+    .notNull(),
 });
 
 export const tasks = pgTable('tasks', {

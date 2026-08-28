@@ -2,7 +2,8 @@
 
 import { useModal } from '@/components/modals/ModalContext';
 import { Button } from '@/components/ui/button';
-import { Info, ShieldBan, Trash2 } from 'lucide-react';
+import { Info, ShieldBan, Trash2, UserRoundPlus } from 'lucide-react';
+import { NewExpertForm } from './modal_forms';
 
 interface ExpertPayload {
   expertId: string;
@@ -14,6 +15,32 @@ interface ExpertInfoPayload extends ExpertPayload {
   addedDate: string;
 }
 
+export const NewExpertButton = () => {
+  const { openModal, closeModal } = useModal();
+
+  const onClick = () => openModal({
+    type: 'form',
+    title: 'Add new expert',
+    confirmLabel: 'Add',
+    content: formId => (
+      <NewExpertForm
+        formId={formId}
+        onSuccess={closeModal}
+      />
+    ),
+  });
+
+  return (
+    <Button
+      className='peer'
+      intent='create'
+      onClick={onClick}
+    >
+      <UserRoundPlus className='-translate-y-[5%] translate-x-[5%]' strokeWidth={2} />
+    </Button>
+  );
+};
+
 export const InfoButton = ({
   expertId,
   expertName,
@@ -24,7 +51,7 @@ export const InfoButton = ({
 
   const onClick = () => openModal({
     type: 'info',
-    title: `${expertName} Details`,
+    title: `${expertName} details`,
     description: {
       'Added by': addedBy,
       'Added on': addedDate,

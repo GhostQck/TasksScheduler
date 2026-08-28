@@ -11,7 +11,8 @@ const allNames = [
   'unauthorized',
   'session_expired',
   'login_required',
-  'login_success'
+  'login_success',
+  'expert_added',
 ] as const;
 export type NotifyNames = (typeof allNames)[number];
 
@@ -35,6 +36,11 @@ export const MSGS_MAP: Record<NotifyNames, Omit<NotifyMessage, 'id'>> = {
     type: 'success',
     title: 'Logged In',
     description: 'You have successfully logged in',
+  },
+  expert_added: {
+    type: 'success',
+    title: 'Expert Added',
+    description: 'Expert has been successfully added',
   },
 } as const;
 
