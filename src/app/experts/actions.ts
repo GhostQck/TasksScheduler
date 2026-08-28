@@ -78,7 +78,10 @@ export const newExpertAction = async (
 
     revalidatePath('/experts');
 
-    return { success: true };
+    return {
+      success: true,
+      fields: rawFields,
+    };
   } catch (err) {
     console.error('Database Error (newExpertAction): ', err);
     return {

@@ -27,16 +27,18 @@ export default function Notification() {
     const notifyKey = searchParams.get('notify') as NotifyNames;
 
     if (notifyKey && MSGS_MAP[notifyKey]) {
-      const notifyInfo = MSGS_MAP[notifyKey];
+      const notifyStr = MSGS_MAP[notifyKey];
+      const notifyValue = searchParams.get('value') as string;
 
       setNotify({
         id: Date.now().toString(),
-        ...notifyInfo,
+        ...notifyStr(notifyValue ? notifyValue : ''),
       });
       setIsFading(false);
 
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.delete('notify');
+      if (notifyValue) newParams.delete('value');
 
       const paramString = newParams.toString();
       const cleanUrl = paramString ? `${pathname}?${paramString}` : pathname;

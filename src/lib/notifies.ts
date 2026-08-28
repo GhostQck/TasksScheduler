@@ -16,32 +16,32 @@ const allNames = [
 ] as const;
 export type NotifyNames = (typeof allNames)[number];
 
-export const MSGS_MAP: Record<NotifyNames, Omit<NotifyMessage, 'id'>> = {
-  unauthorized: {
+export const MSGS_MAP: Record<NotifyNames, (_value?: string) => Omit<NotifyMessage, 'id'>> = {
+  unauthorized: (_value = '') => ({
     type: 'error',
-    title: 'Access Denied',
+    title: 'Access denied',
     description: 'You do not have permission to view that page',
-  },
-  session_expired: {
+  }),
+  session_expired: (_value = '') => ({
     type: 'info',
-    title: 'Session Expired',
+    title: 'Session expired',
     description: 'Please log in again to continue',
-  },
-  login_required: {
+  }),
+  login_required: (_value = '') => ({
     type: 'error',
-    title: 'Authentication Required',
+    title: 'Authentication required',
     description: 'Please log in to access that area',
-  },
-  login_success: {
+  }),
+  login_success: (_value = '') => ({
     type: 'success',
     title: 'Logged In',
     description: 'You have successfully logged in',
-  },
-  expert_added: {
+  }),
+  expert_added: (_value = '') => ({
     type: 'success',
-    title: 'Expert Added',
-    description: 'Expert has been successfully added',
-  },
+    title: 'Expert added',
+    description: `${_value} has been successfully added to the expert list`,
+  }),
 } as const;
 
 export const getNotifyUrl = (

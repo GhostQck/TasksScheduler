@@ -33,14 +33,14 @@ export const NewExpertForm = ({
   useEffect(() => {
     if (state.success) {
       onSuccess();
-      router.push('/experts?notify=expert_added');
+      router.push(`/experts?notify=expert_added&value=${state.fields?.name || 'Expert'}`);
     }
   }, [state.success, onSuccess]);
 
   return (
     <form id={formId} action={formAction}>
       {state.error && (
-        <div className='mb-4 p-2 flex flex-row justify-start items-center gap-2 text-sm font-semibold rounded-lg bg-neg-200 border-2 border-neg-800 text-neg-800'>
+        <div className='mb-4 p-2 flex flex-row justify-start items-center gap-2 text-sm font-semibold rounded-lg bg-neg-800/80 border-2 border-neg-200 text-neg-200'>
           <ShieldX />
           {state.error}
         </div>
@@ -55,6 +55,7 @@ export const NewExpertForm = ({
           labelText='CX ID'
           intent='transparent_bg'
           labelCN='text-slate-200'
+          defaultValue={state.fields?.cxId}
           required
         />
 
@@ -66,6 +67,7 @@ export const NewExpertForm = ({
           labelText='Name'
           intent='transparent_bg'
           labelCN='text-slate-200'
+          defaultValue={state.fields?.name}
           required
         />
       </div>
