@@ -7,6 +7,7 @@ import { PERMISSIONS } from './permissions';
 import { db } from '@/db';
 import { eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
+import { NotifyNames } from '@/lib/notifies';
 
 export type NewExpertFormState = {
   success: boolean;
@@ -92,6 +93,116 @@ export const newExpertAction = async (
   }
 };
 
-export const deactivateExpertAction = async (expertId: number) => {
-  
+interface DefaultExpertState {
+  success: boolean;
+  notify?: NotifyNames | null;
+  name?: string | null;
+}
+
+export const deactivateExpertAction = async (expertId: string): Promise<DefaultExpertState> => {
+  const user = await getSession();
+
+  if (!user || !user.session) return {
+    success: false,
+    notify: 'login_required',
+  };
+
+  const role = user.session.userRole as UserRole;
+  if (!role || !PERMISSIONS.deactiveExpertAction.includes(role)) return {
+    success: false,
+    notify: 'unauthorized',
+  };
+
+  try {
+    const [expert] = await db
+      .select({
+        id: experts.id,
+        name: experts.name,
+        status: experts.status,
+      })
+      .from(experts)
+      .where(eq(experts.uuid, expertId))
+      .limit(1);
+
+    if (!expert) return {
+      success: false,
+      notify: 'expert_nonexist',
+    };
+
+    if (!expert.status) return {
+      success: false,
+      notify: 'expert_already_blocked',
+      name: expert.name,
+    };
+
+    await db
+      .update(experts)
+      .set({
+        status: false,
+      })
+      .where(eq(experts.id, expert.id));
+
+    revalidatePath('/experts');
+
+    return {
+      success: true,
+      notify: 'expert_deactivated',
+      name: expert.name,
+    };
+  } catch (err) {
+    console.error('Database Error (deactivateExpertAction): ', err);
+    return {
+      success: false,
+      notify: 'database_error',
+    };
+  }
+};
+
+export const deleteExpertAction = async (expertId: string): Promise<DefaultExpertState> => {
+  const user = await getSession();
+
+  if (!user || !user.session) return {
+    success: false,
+    notify: 'login_required',
+  };
+
+  const role = user.session.userRole as UserRole;
+  if (!role || !PERMISSIONS.deleteExpertAction.includes(role)) return {
+    success: false,
+    notify: 'unauthorized',
+  };
+
+  try {
+    const [expert] = await db
+      .select({
+        id: experts.id,
+        name: experts.name,
+      })
+      .from(experts)
+      .where(eq(experts.uuid, expertId))
+      .limit(1);
+
+    if (!expert) return {
+      success: false,
+      notify: 'expert_nonexist',
+    };
+
+    await db
+      .delete(experts)
+      .where(eq(experts.id, expert.id));
+
+    revalidatePath('/experts');
+
+    return {
+      success: true,
+      notify: 'expert_deleted',
+      name: expert.name,
+    };
+  } catch (err) {
+    console.error('Database Error (deleteExpertAction): ', err);
+    return {
+      success: false,
+      notify: 'database_error',
+    };
+  }
 };

@@ -98,6 +98,12 @@ export default async function Experts() {
               No active experts
             </p>
           )}
+
+          {inactiveExperts.length > 0 && (
+            <div className='flex flex-col gap-4'>
+
+            </div>
+          )}
         </section>
 
         <hr className='w-1 h-full bg-txt border-none rounded-full shadow-md' />

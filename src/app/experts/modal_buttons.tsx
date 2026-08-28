@@ -4,6 +4,8 @@ import { useModal } from '@/components/modals/ModalContext';
 import { Button } from '@/components/ui/button';
 import { Info, ShieldBan, Trash2, UserRoundPlus } from 'lucide-react';
 import { NewExpertForm } from './modal_forms';
+import { deactivateExpertAction, deleteExpertAction } from './actions';
+import { useRouter } from 'next/navigation';
 
 interface ExpertPayload {
   expertId: string;
@@ -69,6 +71,7 @@ export const InfoButton = ({
 };
 
 export const DeactivateButton = ({ expertId, expertName }: ExpertPayload) => {
+  const router = useRouter();
   const { openModal } = useModal();
 
   const onClick = () => openModal({
@@ -77,7 +80,8 @@ export const DeactivateButton = ({ expertId, expertName }: ExpertPayload) => {
     description: `If you deactivate ${expertName}, their instance will be hidden from the expert list for everyone.`,
     isDanger: true,
     onConfirm: async () => {
-      console.log('deactivated ', expertId);
+      const state = await deactivateExpertAction(expertId);
+      router.push(`/experts?notify=${state.notify || 'unknown'}&value=${state.name || 'Expert'}`);
     },
   });
 
@@ -92,6 +96,7 @@ export const DeactivateButton = ({ expertId, expertName }: ExpertPayload) => {
 };
 
 export const DeleteButton = ({ expertId, expertName }: ExpertPayload) => {
+  const router = useRouter();
   const { openModal } = useModal();
 
   const onClick = () => openModal({
@@ -101,7 +106,8 @@ export const DeleteButton = ({ expertId, expertName }: ExpertPayload) => {
     isDanger: true,
     confirmLabel: 'Delete',
     onConfirm: async () => {
-      console.log('deactivated ', expertId);
+      const state = await deleteExpertAction(expertId);
+      router.push(`/experts?notify=${state.notify || 'unknown'}&value=${state.name || 'Expert'}`);
     },
   });
 
