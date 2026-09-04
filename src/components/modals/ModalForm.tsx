@@ -53,7 +53,7 @@ export default function ModalForm({
       ref={dialogRef}
       onClose={onClose}
       onClick={handleClick}
-      className='fixed inset-0 z-50 m-auto max-w-md w-full rounded-xl bg-bg border border-bg-200 p-4 text-txt shadow-xl backdrop:bg-black/60 backdrop:backdrop-blur-sm'
+      className='fixed inset-0 z-50 m-auto min-w-md rounded-xl bg-bg border border-bg-200 p-4 text-txt shadow-xl backdrop:bg-black/60 backdrop:backdrop-blur-sm'
     >
       <div className='flex items-start justify-between gap-4'>
         <div className='flex items-center gap-4'>

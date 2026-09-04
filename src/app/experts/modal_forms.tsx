@@ -3,7 +3,7 @@
 import { useActionState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { newExpertAction, NewExpertFormState } from './actions';
-import { Input, InputLabel } from '@/components/form/input';
+import { InputLabel } from '@/components/form/input';
 import { ShieldX } from 'lucide-react';
 
 const initNewExpertState: NewExpertFormState = {

@@ -6,6 +6,7 @@ import { Info, ShieldBan, Trash2, UserRoundPlus, LockKeyholeOpen } from 'lucide-
 import { NewExpertForm } from './modal_forms';
 import { activateExpertAction, deactivateExpertAction, deleteExpertAction } from './actions';
 import { useRouter } from 'next/navigation';
+import ShiftManagerModal from './modal_shift_manager';
 
 interface ExpertPayload {
   expertId: string;
@@ -74,15 +75,41 @@ export const DeactivateButton = ({ expertId, expertName }: ExpertPayload) => {
   const router = useRouter();
   const { openModal } = useModal();
 
+  // const onClick = () => openModal({
+  //   type: 'confirm',
+  //   title: `Deactivate ${expertName}?`,
+  //   description: `If you deactivate ${expertName}, their instance will be hidden from the expert list for everyone.`,
+  //   isDanger: true,
+  //   onConfirm: async () => {
+  //     const state = await deactivateExpertAction(expertId);
+  //     router.push(`/experts?notify=${state.notify || 'unknown'}&value=${state.name || 'Expert'}`);
+  //   },
+  // });
+
   const onClick = () => openModal({
-    type: 'confirm',
-    title: `Deactivate ${expertName}?`,
-    description: `If you deactivate ${expertName}, their instance will be hidden from the expert list for everyone.`,
-    isDanger: true,
-    onConfirm: async () => {
-      const state = await deactivateExpertAction(expertId);
-      router.push(`/experts?notify=${state.notify || 'unknown'}&value=${state.name || 'Expert'}`);
-    },
+    type: 'form',
+    title: 'Edit Schedule',
+    confirmLabel: 'Save',
+    content: formId => (
+      <ShiftManagerModal
+        selectedDate='09.08.0226'
+        initAvailablePool={[{
+          id: 1,
+          startHour: 18,
+          startMinute: 30,
+          endHour: 4,
+          endMinute: 54,
+        }]}
+        initDaySchedule={[{
+          id: 1,
+          startHour: 18,
+          startMinute: 30,
+          endHour: 4,
+          endMinute: 54,
+        }]}
+        onSave={async () => console.log(5)}
+      />
+    ),
   });
 
   return (

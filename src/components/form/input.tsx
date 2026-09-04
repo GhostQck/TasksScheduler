@@ -1,4 +1,6 @@
-import React, { useId, InputHTMLAttributes, LabelHTMLAttributes } from 'react';
+'use client';
+
+import React, { useId, useState, InputHTMLAttributes, LabelHTMLAttributes } from 'react';
 import { type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { inputVars, labelVars } from './cva_tables';
@@ -98,11 +100,72 @@ export const InputCounter = React.forwardRef<HTMLInputElement, InputCounterProps
   labelCN,
   labelText,
   startValue = 0,
+  min,
+  max,
+  step = 1,
+  value: controlledValue,
+  onChange,
   intent,
   ...props
 }, ref) => {
   const autoId = useId();
   const inputId = id || autoId;
+
+  const minVal: number = min !== undefined ? Number(min) : -Infinity;
+  const maxVal: number = max !== undefined ? Number(max) : Infinity;
+  const stepVal: number = Number(step) || 1;
+
+  const [internalValue, setInternalValue] = useState<string>(
+    startValue !== undefined ? String(startValue) : ''
+  );
+
+  const currentValue: string = controlledValue !== undefined ? String(controlledValue) : internalValue;
+
+  const sanitizeAndClamp = (val: string): string => {
+    if (val === '') return val;
+
+    let sanitized = val.replace(/[^0-9-]/g, '');
+    if (minVal >= 0)
+      sanitized = sanitized.replace(/-/g, '');
+    else sanitized = sanitized.replace(/(?!^)-/g, '');
+
+    if (sanitized === '' || sanitized === '-') return sanitized;
+
+    const numericVal = Number(sanitized);
+    if (isNaN(numericVal)) return '';
+
+    const clamped = Math.min(Math.max(numericVal, minVal), maxVal)
+    return String(clamped);
+  };
+
+  const triggerChange = (newValue: string) => {
+    setInternalValue(newValue);
+
+    if (onChange) {
+      const event = {
+        target: { value: newValue, name: props.name },
+        currentTarget: { value: newValue, name: props.name },
+      } as React.ChangeEvent<HTMLInputElement>;
+      onChange(event);
+    }
+  };
+
+  const handleIncrement = () => {
+    const currentNum = Number(currentValue) || 0;
+    const nextNum = Math.min(currentNum + stepVal, maxVal);
+    triggerChange(String(nextNum));
+  };
+
+  const handleDecrement = () => {
+    const currentNum = Number(currentValue) || 0;
+    const nextNum = Math.max(currentNum - stepVal, minVal);
+    triggerChange(String(nextNum));
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const cleaned = sanitizeAndClamp(e.target.value);
+    triggerChange(cleaned);
+  };
 
   return (
     <div className={cn('relative', wrapperCN)}>
@@ -110,33 +173,50 @@ export const InputCounter = React.forwardRef<HTMLInputElement, InputCounterProps
         ref={ref}
         id={inputId}
         intent={intent}
-        type='number'
+        type='text'
+        inputMode='numeric'
         className={cn(
           '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
           className
         )}
         placeholder=' '
-        defaultValue={startValue}
+        value={currentValue}
+        onChange={handleInputChange}
+        min={min}
+        max={max}
+        step={step}
         {...props}
       />
 
-      <Label
-        htmlFor={inputId}
-        intent={intent}
-        className={labelCN}
-      >{labelText}</Label>
+      {labelText !== '' && (
+        <Label
+          htmlFor={inputId}
+          intent={intent}
+          className={labelCN}
+        >{labelText}</Label>
+      )}
 
       <div className='absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 z-3'>
         <Button
           type='button'
           intent='circle'
-          className={buttonCN}
+          className={cn(
+            Number(currentValue) >= maxVal ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto',
+            buttonCN
+          )}
+          onClick={handleIncrement}
+          disabled={Number(currentValue) >= maxVal}
         ><Plus /></Button>
 
         <Button
           type='button'
           intent='circle'
-          className={buttonCN}
+          className={cn(
+            Number(currentValue) <= minVal ? 'opacity-50 pointer-events-none' : 'opacity-100 pointer-events-auto',
+            buttonCN
+          )}
+          onClick={handleDecrement}
+          disabled={Number(currentValue) <= minVal}
         ><Minus /></Button>
       </div>
     </div>
